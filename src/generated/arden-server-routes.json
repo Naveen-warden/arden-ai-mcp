@@ -1,0 +1,4487 @@
+{
+  "version": 1,
+  "generatedAt": "2026-08-03T12:39:54.433Z",
+  "sourceCommit": "4fca75ac5e2bff0a8df0d7927ad1f03738c1c601",
+  "routes": [
+    {
+      "method": "PUT",
+      "path": "/admin-app/accept-requested-rent-transaction",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 272
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/accept-requested-transaction",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 254
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/approve-resident",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 176
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/archive-chart-of-account",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 128
+    },
+    {
+      "method": "DELETE",
+      "path": "/admin-app/archive-permission-set",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 803
+    },
+    {
+      "method": "DELETE",
+      "path": "/admin-app/archive-session",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 815
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/auto-assign-request",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 330
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/auto-login",
+      "appScope": "admin-app",
+      "access": "protected",
+      "sourceFile": "src/routes/admin-app/protected/index.ts",
+      "sourceLine": 8
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/cancel-booking",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 519
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/cancel-close-booking",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 523
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/cancel-event",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 379
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/change-resident-room",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 182
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/check-in-resident",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 196
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/check-in-resident",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 534
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/clear-seed-data",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 112
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/clone-task",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 349
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/close-attendance-session",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 439
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/close-booking",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 521
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/close-event",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 380
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/close-notice",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 398
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/close-poll",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 390
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/create-attendance-session",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 438
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/create-bank-refund-payment-for-existing-payment",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 267
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/create-bank-settlement-report",
+      "appScope": "admin-app",
+      "access": "public",
+      "sourceFile": "src/routes/admin-app/public/index.ts",
+      "sourceLine": 20
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/create-channel-api-access",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 547
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/create-deposit-transfer-payment",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 269
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/create-event",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 376
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/create-integration-marketplace",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 415
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/create-invoice",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 245
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/create-lobby-room-for-room-type",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 156
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/create-many-residents",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 173
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/create-notice",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 396
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/create-poll",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 387
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/create-request",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 327
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/create-resident",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 172
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/create-resident-check-in-task",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 192
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/create-resident-check-out-task",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 198
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/create-resident-refund-payment",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 181
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/create-service",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 488
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/create-service-package",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 493
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/create-service-subscription",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 497
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/create-session",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 811
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/create-task-dependency",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 354
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/decline-requested-rent-transaction",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 273
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/decline-requested-transaction",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 255
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/delete-amenity",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 750
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/delete-api-access",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 371
+    },
+    {
+      "method": "DELETE",
+      "path": "/admin-app/delete-attendance-session",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 441
+    },
+    {
+      "method": "DELETE",
+      "path": "/admin-app/delete-automation",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 406
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/delete-brand",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 721
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/delete-channel",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 548
+    },
+    {
+      "method": "DELETE",
+      "path": "/admin-app/delete-chart-of-account",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 127
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/delete-custom-script",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 677
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/delete-email",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 726
+    },
+    {
+      "method": "DELETE",
+      "path": "/admin-app/delete-email-template",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 737
+    },
+    {
+      "method": "DELETE",
+      "path": "/admin-app/delete-employee",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 367
+    },
+    {
+      "method": "DELETE",
+      "path": "/admin-app/delete-event",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 382
+    },
+    {
+      "method": "DELETE",
+      "path": "/admin-app/delete-form-field-data",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 362
+    },
+    {
+      "method": "DELETE",
+      "path": "/admin-app/delete-form-field-template",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 360
+    },
+    {
+      "method": "DELETE",
+      "path": "/admin-app/delete-integration",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 411
+    },
+    {
+      "method": "DELETE",
+      "path": "/admin-app/delete-invoice",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 247
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/delete-legal-entity",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 713
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/delete-location",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 745
+    },
+    {
+      "method": "DELETE",
+      "path": "/admin-app/delete-meal",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 425
+    },
+    {
+      "method": "DELETE",
+      "path": "/admin-app/delete-notice",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 401
+    },
+    {
+      "method": "DELETE",
+      "path": "/admin-app/delete-payment-plan",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 691
+    },
+    {
+      "method": "DELETE",
+      "path": "/admin-app/delete-poll",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 392
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/delete-rate",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 647
+    },
+    {
+      "method": "DELETE",
+      "path": "/admin-app/delete-room",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 162
+    },
+    {
+      "method": "DELETE",
+      "path": "/admin-app/delete-room-type",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 155
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/delete-room-type-rate",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 651
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/delete-task",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 350
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/delete-task-dependency",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 355
+    },
+    {
+      "method": "DELETE",
+      "path": "/admin-app/delete-tax",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 133
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/disable-resident-wifi-credentials",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 186
+    },
+    {
+      "method": "DELETE",
+      "path": "/admin-app/discard-lead",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 235
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/discard-notice",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 399
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/enable-resident-wifi-credentials",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 185
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/execute-custom-script-code",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 669
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/extend-booking",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 518
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/finish-close-booking",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 526
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/finish-resident-check-out",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 206
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/generate-custom-script-code",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 665
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/generate-extension-plan-for-booking",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 511
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/generate-occupancies",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 552
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/generate-occupancies-for-booking",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 507
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/generate-payment-plan",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 271
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/generate-plan-for-booking",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 510
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/generate-resident-wifi-credentials",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 184
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/generate-scanner-url-for-service",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 485
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/generate-task-occurrence",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 348
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-activities",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 108
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-amenities",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 748
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-api-access",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 369
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-attendance-csv-with-filters",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 437
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-attendance-records",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 436
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-attendance-sessions",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 435
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-attendance-statistics",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 453
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-automations",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 404
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/get-available-service-occupancies",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 496
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/get-bed-availability",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 506
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-beds-csv",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 481
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-beneficiaries",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 115
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-booking-collection-stats",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 471
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-booking-deposit-stats",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 473
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-booking-statistics",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 456
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-bookings",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 505
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-bookings-list",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 514
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-bookings-list-csv",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 515
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-brands",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 719
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/get-cancel-booking-info",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 520
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-channels",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 545
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/get-chart-of-account-balances",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 318
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-chart-of-accounts",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 125
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-cheques-list",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 294
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-company-details",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 116
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-company-statistics",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 444
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-contracts",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 212
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-custom-script-type-definitions",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 661
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-custom-scripts",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 657
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-demography-stats",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 469
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-deposit-stats",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 462
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-detailed-journals-for-tally",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 320
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-discount-stats",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 468
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-document-templates",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 217
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-email-templates",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 729
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-emails",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 724
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-employee-statistics",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 457
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-employees",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 365
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-event-participants",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 375
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-event-statistics",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 451
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-events",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 374
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/get-finish-close-booking-info",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 527
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-form-field-templates",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 358
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/get-gateway-order",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 243
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-history",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 556
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-integration-marketplace",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 414
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-integrations",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 409
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/get-invoice-public-link",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 291
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-invoice-statistics",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 448
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-invoices",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 242
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-journal-entries",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 321
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-journals",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 319
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-kitchen-statistics",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 446
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-kitchens",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 419
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/get-lead-portal-link",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 236
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-lead-statistics",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 455
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-leads",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 230
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-leads-csv",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 477
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-leads-csv-with-filters",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 232
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-leads-list",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 231
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-ledger-balances",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 227
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-ledger-csv",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 239
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-legal-entities",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 705
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-locations",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 743
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-meal-items",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 428
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-meal-sheet-template",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 432
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-meals",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 423
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-notices",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 395
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-occupancies",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 551
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-occupancy-csv",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 482
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-occupancy-stats",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 464
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-occupancy-stats-v2",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 465
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-payment-items-csv",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 480
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/get-payment-plan",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 174
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-payment-plans",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 683
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/get-payment-public-link",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 274
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-payment-statistics",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 449
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-payments-csv",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 478
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-permission-sets",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 798
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/get-plan-options-for-booking",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 509
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-poll-participants",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 386
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-poll-statistics",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 452
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-polls",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 385
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-projected-tasks",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 343
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-properties",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 141
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-properties-list",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 142
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-property-occupancy-timeline",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 144
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-property-statistics",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 445
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-rates",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 645
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/get-razorpay-oauth-url",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 117
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-refund-stats",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 463
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-rent-payments",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 258
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-rent-payments-csv-with-filters",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 260
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-rent-payments-list",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 259
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-request-fill-data",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 337
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-request-next-statuses-map",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 338
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/get-request-public-link",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 336
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-request-statistics",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 447
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-request-stats",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 466
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-requests",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 324
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-requests-csv",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 475
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-requests-csv-with-filters",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 326
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-requests-list",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 325
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-resident-collection-stats",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 470
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-resident-data",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 170
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-resident-deposit-stats",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 472
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/get-resident-moved-out-info",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 180
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/get-resident-moving-out-info",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 178
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-resident-statistics",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 454
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-residents",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 168
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-residents-csv",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 476
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-residents-csv-with-filters",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 171
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-residents-for-booking",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 535
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-residents-list",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 169
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-revenue-stats",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 460
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-revenue-stats-old",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 461
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-room-type-listings",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 152
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-room-types",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 151
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-rooms",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 159
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-rooms-with-occupancy-for-date",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 160
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-service-access-log",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 499
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-service-subscriptions",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 501
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-service-usages",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 502
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-services",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 492
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-sessions",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 809
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-settlements",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 280
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-settlements-csv-with-filters",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 281
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/get-start-close-booking-info",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 525
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-subscription-data",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 120
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/get-subscription-transaction",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 121
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-task-history",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 344
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-task-list",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 342
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-task-statistics",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 345
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-tasks",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 341
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-tax-deductions",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 134
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-tax-exemptions",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 135
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-taxes",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 131
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-transaction-statistics",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 450
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-transaction-stats",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 467
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-transactions",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 277
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-transactions-csv",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 479
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-transactions-csv-with-filters",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 279
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-transactions-list",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 278
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-users-with-latest-booking",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 531
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-whatsapp-messages",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 777
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-whatsapp-templates",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 783
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/get-zoho-asap-token",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 109
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/hold-event",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 378
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/hold-poll",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 389
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/import-meal-sheet",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 431
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/integrations/create-cashgram-for-payment",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 559
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/integrations/deactivate-cashgram-for-payment",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 567
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/integrations/generate-eqaro-bond-for-lead",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 607
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/integrations/get-cashgram-status-for-payment",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 563
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/integrations/get-circlepe-eligibility",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 617
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/integrations/get-eqaro-bond-for-lead",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 611
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/integrations/get-eqaro-eligibility",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 599
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/integrations/get-tally-prime-companies",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 577
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/integrations/get-tally-prime-hierarchy",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 581
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/integrations/get-tally-prime-journal-sync-status",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 589
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/integrations/get-tally-prime-status",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 573
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/integrations/get-zoho-books-accounts",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 635
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/integrations/get-zoho-books-organizations",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 631
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/integrations/get-zoho-books-status",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 627
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/integrations/refresh-circle-pe-onboarding-status-for-lead",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 621
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/integrations/sync-zoho-books-payment",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 639
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/integrations/update-eqaro-eligibility-for-lead",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 603
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/integrations/update-tally-prime-hierarchy",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 585
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/integrations/update-tally-prime-journals",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 593
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/link-amenity-with-property",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 751
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/link-amenity-with-room-type",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 759
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/link-amenity-with-service",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 767
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/link-room-type-with-service",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 486
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/link-script-with-payment-plan",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 695
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/logout",
+      "appScope": "admin-app",
+      "access": "protected",
+      "sourceFile": "src/routes/admin-app/protected/index.ts",
+      "sourceLine": 9
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/mark-cheque-cancelled",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 303
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/mark-cheque-deposited",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 298
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/mark-cheque-settled",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 308
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/mark-cheque-unsettled",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 312
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/mark-invoice-paid",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 249
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/mark-invoice-uncollectable",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 252
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/mark-invoice-void",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 251
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/mark-many-invoices-paid",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 250
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/mark-payment-under-review",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 268
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/mark-payment-unpaid",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 264
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/mark-property-archived",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 140
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/mark-property-live",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 139
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/mark-rent-payment-adjusted",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 265
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/mark-rent-payment-paid",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 263
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/mark-rent-payment-void",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 266
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/mark-request-progress",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 329
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/mark-resident-moved-out",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 179
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/mark-resident-moving-out",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 177
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/mark-service-archived",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 491
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/mark-service-live",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 490
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/mark-task-cancelled",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 353
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/mark-task-completed",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 351
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/mark-task-incomplete",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 352
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/onboarding",
+      "appScope": "admin-app",
+      "access": "protected",
+      "sourceFile": "src/routes/admin-app/protected/index.ts",
+      "sourceLine": 7
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/open-poll",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 391
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/phone-login",
+      "appScope": "admin-app",
+      "access": "public",
+      "sourceFile": "src/routes/admin-app/public/index.ts",
+      "sourceLine": 15
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/publish-event",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 381
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/publish-notice",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 400
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/razorpay/oauth-callback",
+      "appScope": "admin-app",
+      "access": "public",
+      "sourceFile": "src/routes/admin-app/public/index.ts",
+      "sourceLine": 18
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/re-execute-settlement",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 286
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/reconcile-bank-settlement-report",
+      "appScope": "admin-app",
+      "access": "public",
+      "sourceFile": "src/routes/admin-app/public/index.ts",
+      "sourceLine": 21
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/reconcile-transactions",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 282
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/record-service-usage",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 500
+    },
+    {
+      "method": "GET",
+      "path": "/admin-app/refresh",
+      "appScope": "admin-app",
+      "access": "public",
+      "sourceFile": "src/routes/admin-app/public/index.ts",
+      "sourceLine": 16
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/refresh-gateway-transaction-status",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 285
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/regenerate-contract",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 214
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/reopen-request",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 335
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/request-subscription-grace",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 122
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/reserve-beds-for-booking",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 513
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/reverse-cancel-booking",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 524
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/set-device-token",
+      "appScope": "admin-app",
+      "access": "protected",
+      "sourceFile": "src/routes/admin-app/protected/index.ts",
+      "sourceLine": 10
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/sign-contract",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 213
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/skip-onboarding-step",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 187
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/skip-onboarding-step-for-booking",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 528
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/split-payment",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 262
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/start-close-booking",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 522
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/start-resident-check-out",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 202
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/swap-resident-rooms",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 183
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/toggle-disable-employee",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 368
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/unlink-amenity-with-property",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 755
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/unlink-amenity-with-room-type",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 763
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/unlink-amenity-with-service",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 771
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/unlink-room-type-with-service",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 487
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/unlink-script-with-payment-plan",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 699
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/unreconcile-transactions",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 284
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/update-bed",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 165
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/update-booking-property",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 529
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/update-booking-user-id",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 530
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/update-company",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 113
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/update-event",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 377
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/update-integration-marketplace",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 416
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/update-invoice",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 246
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/update-notice",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 397
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/update-poll",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 388
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/update-request",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 328
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/update-resident-data",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 175
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/update-service",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 489
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/update-service-package",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 494
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/update-service-subscription",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 498
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/update-session",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 813
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/update-settings",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 148
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/update-transaction-details",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 283
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/update-user-profile",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 107
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/upsert-amenity",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 749
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/upsert-api-access",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 370
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/upsert-attendance-record",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 440
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/upsert-automation",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 405
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/upsert-beneficiary",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 114
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/upsert-booking",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 517
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/upsert-brand",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 720
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/upsert-channel",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 546
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/upsert-chart-of-account",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 126
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/upsert-chart-of-account-on-room-type",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 154
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/upsert-custom-script",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 673
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/upsert-document-template",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 221
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/upsert-email",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 725
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/upsert-email-template",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 733
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/upsert-employee",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 366
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/upsert-form-field-data",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 361
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/upsert-form-field-template",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 359
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/upsert-integration",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 410
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/upsert-kitchen",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 420
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/upsert-lead",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 233
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/upsert-lead-reservation",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 234
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/upsert-legal-entity",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 709
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/upsert-location",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 744
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/upsert-meal",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 424
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/upsert-meal-item",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 429
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/upsert-occupancies",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 553
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/upsert-occupancies-for-booking",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 508
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/upsert-payment-plan",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 687
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/upsert-permission-set",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 793
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/upsert-plan-for-booking",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 512
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/upsert-property",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 138
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/upsert-rate",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 646
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/upsert-rent-payment",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 261
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/upsert-resident-for-booking",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 539
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/upsert-room",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 161
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/upsert-room-type",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 153
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-app/upsert-room-type-rate",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 650
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/upsert-service-time-slots",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 495
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/upsert-task",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 346
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/upsert-task-with-subtasks",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 347
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/upsert-tax",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 132
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/upsert-whatsapp-template",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 787
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/validate-meal-sheet",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 430
+    },
+    {
+      "method": "POST",
+      "path": "/admin-app/validate-resident-sheet",
+      "appScope": "admin-app",
+      "access": "private",
+      "sourceFile": "src/routes/admin-app/private/index.ts",
+      "sourceLine": 654
+    },
+    {
+      "method": "POST",
+      "path": "/booking-app/auto-login",
+      "appScope": "booking-app",
+      "access": "protected",
+      "sourceFile": "src/routes/booking-app/protected/index.ts",
+      "sourceLine": 7
+    },
+    {
+      "method": "POST",
+      "path": "/booking-app/can-create-gateway-transaction",
+      "appScope": "booking-app",
+      "access": "public",
+      "sourceFile": "src/routes/booking-app/public/index.ts",
+      "sourceLine": 13
+    },
+    {
+      "method": "PUT",
+      "path": "/booking-app/create-booking",
+      "appScope": "booking-app",
+      "access": "private",
+      "sourceFile": "src/routes/booking-app/private/index.ts",
+      "sourceLine": 68
+    },
+    {
+      "method": "POST",
+      "path": "/booking-app/generate-gateway-transaction",
+      "appScope": "booking-app",
+      "access": "private",
+      "sourceFile": "src/routes/booking-app/private/index.ts",
+      "sourceLine": 25
+    },
+    {
+      "method": "GET",
+      "path": "/booking-app/get-bookings",
+      "appScope": "booking-app",
+      "access": "private",
+      "sourceFile": "src/routes/booking-app/private/index.ts",
+      "sourceLine": 58
+    },
+    {
+      "method": "GET",
+      "path": "/booking-app/get-company-details",
+      "appScope": "booking-app",
+      "access": "private",
+      "sourceFile": "src/routes/booking-app/private/index.ts",
+      "sourceLine": 16
+    },
+    {
+      "method": "GET",
+      "path": "/booking-app/get-leads",
+      "appScope": "booking-app",
+      "access": "private",
+      "sourceFile": "src/routes/booking-app/private/index.ts",
+      "sourceLine": 29
+    },
+    {
+      "method": "GET",
+      "path": "/booking-app/get-payments",
+      "appScope": "booking-app",
+      "access": "private",
+      "sourceFile": "src/routes/booking-app/private/index.ts",
+      "sourceLine": 23
+    },
+    {
+      "method": "GET",
+      "path": "/booking-app/get-properties",
+      "appScope": "booking-app",
+      "access": "private",
+      "sourceFile": "src/routes/booking-app/private/index.ts",
+      "sourceLine": 15
+    },
+    {
+      "method": "PUT",
+      "path": "/booking-app/get-resident-moving-out-info",
+      "appScope": "booking-app",
+      "access": "private",
+      "sourceFile": "src/routes/booking-app/private/index.ts",
+      "sourceLine": 35
+    },
+    {
+      "method": "GET",
+      "path": "/booking-app/get-residents",
+      "appScope": "booking-app",
+      "access": "private",
+      "sourceFile": "src/routes/booking-app/private/index.ts",
+      "sourceLine": 30
+    },
+    {
+      "method": "GET",
+      "path": "/booking-app/get-residents-for-booking",
+      "appScope": "booking-app",
+      "access": "private",
+      "sourceFile": "src/routes/booking-app/private/index.ts",
+      "sourceLine": 59
+    },
+    {
+      "method": "GET",
+      "path": "/booking-app/get-transaction-status",
+      "appScope": "booking-app",
+      "access": "private",
+      "sourceFile": "src/routes/booking-app/private/index.ts",
+      "sourceLine": 24
+    },
+    {
+      "method": "POST",
+      "path": "/booking-app/integrations/generate-cashfree-kyc-otp-for-lead",
+      "appScope": "booking-app",
+      "access": "private",
+      "sourceFile": "src/routes/booking-app/private/index.ts",
+      "sourceLine": 44
+    },
+    {
+      "method": "POST",
+      "path": "/booking-app/integrations/generate-cashfree-kyc-otp-for-resident",
+      "appScope": "booking-app",
+      "access": "private",
+      "sourceFile": "src/routes/booking-app/private/index.ts",
+      "sourceLine": 46
+    },
+    {
+      "method": "POST",
+      "path": "/booking-app/integrations/generate-digilocker-kyc-url",
+      "appScope": "booking-app",
+      "access": "private",
+      "sourceFile": "src/routes/booking-app/private/index.ts",
+      "sourceLine": 53
+    },
+    {
+      "method": "POST",
+      "path": "/booking-app/integrations/get-and-save-digilocker-kyc-document",
+      "appScope": "booking-app",
+      "access": "private",
+      "sourceFile": "src/routes/booking-app/private/index.ts",
+      "sourceLine": 55
+    },
+    {
+      "method": "POST",
+      "path": "/booking-app/integrations/get-digilocker-verification-status",
+      "appScope": "booking-app",
+      "access": "private",
+      "sourceFile": "src/routes/booking-app/private/index.ts",
+      "sourceLine": 54
+    },
+    {
+      "method": "POST",
+      "path": "/booking-app/integrations/submit-cashfree-kyc-otp-for-lead",
+      "appScope": "booking-app",
+      "access": "private",
+      "sourceFile": "src/routes/booking-app/private/index.ts",
+      "sourceLine": 45
+    },
+    {
+      "method": "POST",
+      "path": "/booking-app/integrations/submit-cashfree-kyc-otp-for-resident",
+      "appScope": "booking-app",
+      "access": "private",
+      "sourceFile": "src/routes/booking-app/private/index.ts",
+      "sourceLine": 50
+    },
+    {
+      "method": "GET",
+      "path": "/booking-app/logout",
+      "appScope": "booking-app",
+      "access": "protected",
+      "sourceFile": "src/routes/booking-app/protected/index.ts",
+      "sourceLine": 8
+    },
+    {
+      "method": "PUT",
+      "path": "/booking-app/mark-resident-moving-out",
+      "appScope": "booking-app",
+      "access": "private",
+      "sourceFile": "src/routes/booking-app/private/index.ts",
+      "sourceLine": 31
+    },
+    {
+      "method": "POST",
+      "path": "/booking-app/phone-login",
+      "appScope": "booking-app",
+      "access": "public",
+      "sourceFile": "src/routes/booking-app/public/index.ts",
+      "sourceLine": 9
+    },
+    {
+      "method": "GET",
+      "path": "/booking-app/refresh",
+      "appScope": "booking-app",
+      "access": "public",
+      "sourceFile": "src/routes/booking-app/public/index.ts",
+      "sourceLine": 11
+    },
+    {
+      "method": "POST",
+      "path": "/booking-app/set-device-token",
+      "appScope": "booking-app",
+      "access": "protected",
+      "sourceFile": "src/routes/booking-app/protected/index.ts",
+      "sourceLine": 9
+    },
+    {
+      "method": "PUT",
+      "path": "/booking-app/sign-contract",
+      "appScope": "booking-app",
+      "access": "private",
+      "sourceFile": "src/routes/booking-app/private/index.ts",
+      "sourceLine": 14
+    },
+    {
+      "method": "POST",
+      "path": "/booking-app/token-login",
+      "appScope": "booking-app",
+      "access": "public",
+      "sourceFile": "src/routes/booking-app/public/index.ts",
+      "sourceLine": 10
+    },
+    {
+      "method": "POST",
+      "path": "/booking-app/upsert-lead",
+      "appScope": "booking-app",
+      "access": "private",
+      "sourceFile": "src/routes/booking-app/private/index.ts",
+      "sourceLine": 28
+    },
+    {
+      "method": "PUT",
+      "path": "/booking-app/upsert-resident",
+      "appScope": "booking-app",
+      "access": "private",
+      "sourceFile": "src/routes/booking-app/private/index.ts",
+      "sourceLine": 67
+    },
+    {
+      "method": "PUT",
+      "path": "/booking-app/upsert-resident-for-booking",
+      "appScope": "booking-app",
+      "access": "private",
+      "sourceFile": "src/routes/booking-app/private/index.ts",
+      "sourceLine": 63
+    },
+    {
+      "method": "PUT",
+      "path": "/external-app/authenticate-and-create-booking",
+      "appScope": "external-app",
+      "access": "private",
+      "sourceFile": "src/routes/external-app/private/index.ts",
+      "sourceLine": 55
+    },
+    {
+      "method": "GET",
+      "path": "/external-app/brand-key-refresh",
+      "appScope": "external-app",
+      "access": "public",
+      "sourceFile": "src/routes/external-app/public/index.ts",
+      "sourceLine": 11
+    },
+    {
+      "method": "PUT",
+      "path": "/external-app/create-booking",
+      "appScope": "external-app",
+      "access": "private",
+      "sourceFile": "src/routes/external-app/private/index.ts",
+      "sourceLine": 53
+    },
+    {
+      "method": "GET",
+      "path": "/external-app/credential-refresh",
+      "appScope": "external-app",
+      "access": "public",
+      "sourceFile": "src/routes/external-app/public/index.ts",
+      "sourceLine": 12
+    },
+    {
+      "method": "POST",
+      "path": "/external-app/generate-plan-for-channel-and-room-types",
+      "appScope": "external-app",
+      "access": "private",
+      "sourceFile": "src/routes/external-app/private/index.ts",
+      "sourceLine": 38
+    },
+    {
+      "method": "POST",
+      "path": "/external-app/generate-plan-for-external-booking",
+      "appScope": "external-app",
+      "access": "private",
+      "sourceFile": "src/routes/external-app/private/index.ts",
+      "sourceLine": 48
+    },
+    {
+      "method": "POST",
+      "path": "/external-app/get-bed-availability-for-property",
+      "appScope": "external-app",
+      "access": "private",
+      "sourceFile": "src/routes/external-app/private/index.ts",
+      "sourceLine": 28
+    },
+    {
+      "method": "GET",
+      "path": "/external-app/get-bookings",
+      "appScope": "external-app",
+      "access": "private",
+      "sourceFile": "src/routes/external-app/private/index.ts",
+      "sourceLine": 62
+    },
+    {
+      "method": "GET",
+      "path": "/external-app/get-channels",
+      "appScope": "external-app",
+      "access": "private",
+      "sourceFile": "src/routes/external-app/private/index.ts",
+      "sourceLine": 61
+    },
+    {
+      "method": "GET",
+      "path": "/external-app/get-company-details",
+      "appScope": "external-app",
+      "access": "private",
+      "sourceFile": "src/routes/external-app/private/index.ts",
+      "sourceLine": 21
+    },
+    {
+      "method": "POST",
+      "path": "/external-app/get-plan-options-for-channel-and-room-types",
+      "appScope": "external-app",
+      "access": "private",
+      "sourceFile": "src/routes/external-app/private/index.ts",
+      "sourceLine": 33
+    },
+    {
+      "method": "POST",
+      "path": "/external-app/get-plan-options-for-external-booking",
+      "appScope": "external-app",
+      "access": "private",
+      "sourceFile": "src/routes/external-app/private/index.ts",
+      "sourceLine": 43
+    },
+    {
+      "method": "GET",
+      "path": "/external-app/get-property-listings",
+      "appScope": "external-app",
+      "access": "private",
+      "sourceFile": "src/routes/external-app/private/index.ts",
+      "sourceLine": 16
+    },
+    {
+      "method": "POST",
+      "path": "/external-app/get-public-locations",
+      "appScope": "external-app",
+      "access": "public",
+      "sourceFile": "src/routes/external-app/public/index.ts",
+      "sourceLine": 13
+    },
+    {
+      "method": "GET",
+      "path": "/external-app/get-rent-payments",
+      "appScope": "external-app",
+      "access": "private",
+      "sourceFile": "src/routes/external-app/private/index.ts",
+      "sourceLine": 66
+    },
+    {
+      "method": "GET",
+      "path": "/external-app/get-residents",
+      "appScope": "external-app",
+      "access": "private",
+      "sourceFile": "src/routes/external-app/private/index.ts",
+      "sourceLine": 63
+    },
+    {
+      "method": "GET",
+      "path": "/external-app/get-room-type-listings",
+      "appScope": "external-app",
+      "access": "private",
+      "sourceFile": "src/routes/external-app/private/index.ts",
+      "sourceLine": 23
+    },
+    {
+      "method": "GET",
+      "path": "/external-app/get-transactions",
+      "appScope": "external-app",
+      "access": "private",
+      "sourceFile": "src/routes/external-app/private/index.ts",
+      "sourceLine": 67
+    },
+    {
+      "method": "POST",
+      "path": "/public-app/generate-gateway-transaction",
+      "appScope": "public-app",
+      "access": "index",
+      "sourceFile": "src/routes/public-app/index.ts",
+      "sourceLine": 21
+    },
+    {
+      "method": "GET",
+      "path": "/public-app/get-company-details",
+      "appScope": "public-app",
+      "access": "index",
+      "sourceFile": "src/routes/public-app/index.ts",
+      "sourceLine": 13
+    },
+    {
+      "method": "GET",
+      "path": "/public-app/get-payment-verification",
+      "appScope": "public-app",
+      "access": "index",
+      "sourceFile": "src/routes/public-app/index.ts",
+      "sourceLine": 16
+    },
+    {
+      "method": "GET",
+      "path": "/public-app/get-request-fill-data",
+      "appScope": "public-app",
+      "access": "index",
+      "sourceFile": "src/routes/public-app/index.ts",
+      "sourceLine": 24
+    },
+    {
+      "method": "GET",
+      "path": "/public-app/get-request-next-statuses-map",
+      "appScope": "public-app",
+      "access": "index",
+      "sourceFile": "src/routes/public-app/index.ts",
+      "sourceLine": 25
+    },
+    {
+      "method": "GET",
+      "path": "/public-app/get-requests",
+      "appScope": "public-app",
+      "access": "index",
+      "sourceFile": "src/routes/public-app/index.ts",
+      "sourceLine": 23
+    },
+    {
+      "method": "GET",
+      "path": "/public-app/get-resident-invoices",
+      "appScope": "public-app",
+      "access": "index",
+      "sourceFile": "src/routes/public-app/index.ts",
+      "sourceLine": 15
+    },
+    {
+      "method": "GET",
+      "path": "/public-app/get-resident-payments",
+      "appScope": "public-app",
+      "access": "index",
+      "sourceFile": "src/routes/public-app/index.ts",
+      "sourceLine": 19
+    },
+    {
+      "method": "POST",
+      "path": "/public-app/get-service-status",
+      "appScope": "public-app",
+      "access": "index",
+      "sourceFile": "src/routes/public-app/index.ts",
+      "sourceLine": 28
+    },
+    {
+      "method": "POST",
+      "path": "/public-app/get-transaction",
+      "appScope": "public-app",
+      "access": "index",
+      "sourceFile": "src/routes/public-app/index.ts",
+      "sourceLine": 17
+    },
+    {
+      "method": "GET",
+      "path": "/public-app/get-transaction-status",
+      "appScope": "public-app",
+      "access": "index",
+      "sourceFile": "src/routes/public-app/index.ts",
+      "sourceLine": 20
+    },
+    {
+      "method": "POST",
+      "path": "/public-app/mark-request-progress",
+      "appScope": "public-app",
+      "access": "index",
+      "sourceFile": "src/routes/public-app/index.ts",
+      "sourceLine": 26
+    },
+    {
+      "method": "POST",
+      "path": "/public-app/verify-service-for-user",
+      "appScope": "public-app",
+      "access": "index",
+      "sourceFile": "src/routes/public-app/index.ts",
+      "sourceLine": 29
+    },
+    {
+      "method": "POST",
+      "path": "/resident-app/answer-poll",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 86
+    },
+    {
+      "method": "POST",
+      "path": "/resident-app/auto-login",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 30
+    },
+    {
+      "method": "PUT",
+      "path": "/resident-app/cancel-request",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 73
+    },
+    {
+      "method": "POST",
+      "path": "/resident-app/create-request",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 71
+    },
+    {
+      "method": "POST",
+      "path": "/resident-app/create-transaction-request",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 47
+    },
+    {
+      "method": "POST",
+      "path": "/resident-app/create-transaction-request-payment",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 55
+    },
+    {
+      "method": "POST",
+      "path": "/resident-app/generate-gateway-transaction",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 54
+    },
+    {
+      "method": "GET",
+      "path": "/resident-app/get-company-details",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 34
+    },
+    {
+      "method": "GET",
+      "path": "/resident-app/get-company-details",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 44
+    },
+    {
+      "method": "GET",
+      "path": "/resident-app/get-contracts",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 38
+    },
+    {
+      "method": "GET",
+      "path": "/resident-app/get-events",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 80
+    },
+    {
+      "method": "GET",
+      "path": "/resident-app/get-invoices",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 41
+    },
+    {
+      "method": "POST",
+      "path": "/resident-app/get-invoices-public-link",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 42
+    },
+    {
+      "method": "GET",
+      "path": "/resident-app/get-leads",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 62
+    },
+    {
+      "method": "GET",
+      "path": "/resident-app/get-meals",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 97
+    },
+    {
+      "method": "GET",
+      "path": "/resident-app/get-notices",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 89
+    },
+    {
+      "method": "GET",
+      "path": "/resident-app/get-own-bookings",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 100
+    },
+    {
+      "method": "GET",
+      "path": "/resident-app/get-payment-verification",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 46
+    },
+    {
+      "method": "GET",
+      "path": "/resident-app/get-payments",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 50
+    },
+    {
+      "method": "POST",
+      "path": "/resident-app/get-payments-public-link",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 51
+    },
+    {
+      "method": "GET",
+      "path": "/resident-app/get-polls",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 85
+    },
+    {
+      "method": "GET",
+      "path": "/resident-app/get-portal-token",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 64
+    },
+    {
+      "method": "GET",
+      "path": "/resident-app/get-profile-data",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 58
+    },
+    {
+      "method": "GET",
+      "path": "/resident-app/get-request-fill-data",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 76
+    },
+    {
+      "method": "GET",
+      "path": "/resident-app/get-request-next-statuses-map",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 77
+    },
+    {
+      "method": "GET",
+      "path": "/resident-app/get-requests",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 70
+    },
+    {
+      "method": "GET",
+      "path": "/resident-app/get-residents",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 67
+    },
+    {
+      "method": "POST",
+      "path": "/resident-app/get-transaction",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 43
+    },
+    {
+      "method": "GET",
+      "path": "/resident-app/get-transaction-status",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 52
+    },
+    {
+      "method": "GET",
+      "path": "/resident-app/list-properties",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 93
+    },
+    {
+      "method": "GET",
+      "path": "/resident-app/list-rooms",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 94
+    },
+    {
+      "method": "POST",
+      "path": "/resident-app/logout",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 33
+    },
+    {
+      "method": "POST",
+      "path": "/resident-app/phone-login",
+      "appScope": "resident-app",
+      "access": "public",
+      "sourceFile": "src/routes/resident-app/public/index.ts",
+      "sourceLine": 8
+    },
+    {
+      "method": "PUT",
+      "path": "/resident-app/provide-request-feedback",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 72
+    },
+    {
+      "method": "PUT",
+      "path": "/resident-app/read-notice",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 90
+    },
+    {
+      "method": "GET",
+      "path": "/resident-app/refresh",
+      "appScope": "resident-app",
+      "access": "public",
+      "sourceFile": "src/routes/resident-app/public/index.ts",
+      "sourceLine": 9
+    },
+    {
+      "method": "PUT",
+      "path": "/resident-app/reopen-request",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 75
+    },
+    {
+      "method": "PUT",
+      "path": "/resident-app/resolve-request",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 74
+    },
+    {
+      "method": "POST",
+      "path": "/resident-app/set-device-token",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 31
+    },
+    {
+      "method": "PUT",
+      "path": "/resident-app/show-interest",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 82
+    },
+    {
+      "method": "PUT",
+      "path": "/resident-app/sign-contract",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 37
+    },
+    {
+      "method": "PUT",
+      "path": "/resident-app/signup-for-event",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 81
+    },
+    {
+      "method": "PUT",
+      "path": "/resident-app/update-profile",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 59
+    },
+    {
+      "method": "POST",
+      "path": "/resident-app/upsert-lead",
+      "appScope": "resident-app",
+      "access": "private",
+      "sourceFile": "src/routes/resident-app/private/index.ts",
+      "sourceLine": 63
+    },
+    {
+      "method": "GET",
+      "path": "/super-app/allow-company-demo",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 33
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/auto-login",
+      "appScope": "super-admin",
+      "access": "protected",
+      "sourceFile": "src/routes/super-admin/protected/index.ts",
+      "sourceLine": 7
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/check-resident-balances",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 69
+    },
+    {
+      "method": "GET",
+      "path": "/super-app/clean-company-data",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 32
+    },
+    {
+      "method": "PUT",
+      "path": "/super-app/create-dynamic-payments",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 57
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/create-standard-coas",
+      "appScope": "super-admin",
+      "access": "public",
+      "sourceFile": "src/routes/super-admin/public/index.ts",
+      "sourceLine": 14
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/create-subscription-invoice",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 45
+    },
+    {
+      "method": "PUT",
+      "path": "/super-app/decrypt-strings",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 27
+    },
+    {
+      "method": "DELETE",
+      "path": "/super-app/delete-bookings-by-ids",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 75
+    },
+    {
+      "method": "DELETE",
+      "path": "/super-app/delete-bookings-by-property",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 76
+    },
+    {
+      "method": "PUT",
+      "path": "/super-app/delete-custom-script",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 176
+    },
+    {
+      "method": "DELETE",
+      "path": "/super-app/delete-integration",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 62
+    },
+    {
+      "method": "DELETE",
+      "path": "/super-app/delete-leads-by-ids",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 77
+    },
+    {
+      "method": "DELETE",
+      "path": "/super-app/delete-leads-by-property",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 78
+    },
+    {
+      "method": "DELETE",
+      "path": "/super-app/delete-residents-by-ids",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 73
+    },
+    {
+      "method": "DELETE",
+      "path": "/super-app/delete-residents-by-property",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 74
+    },
+    {
+      "method": "DELETE",
+      "path": "/super-app/delete-subscription-invoice",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 47
+    },
+    {
+      "method": "PUT",
+      "path": "/super-app/encrypt-strings",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 28
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/execute-cron",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 64
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/execute-custom-script-code",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 171
+    },
+    {
+      "method": "PUT",
+      "path": "/super-app/generate-custom-script-code",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 167
+    },
+    {
+      "method": "PUT",
+      "path": "/super-app/generate-dynamic-payments-report",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 56
+    },
+    {
+      "method": "GET",
+      "path": "/super-app/get-booking-template",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 123
+    },
+    {
+      "method": "GET",
+      "path": "/super-app/get-companies",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 34
+    },
+    {
+      "method": "GET",
+      "path": "/super-app/get-custom-script-type-definitions",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 143
+    },
+    {
+      "method": "GET",
+      "path": "/super-app/get-custom-script-type-definitions",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 155
+    },
+    {
+      "method": "GET",
+      "path": "/super-app/get-custom-script-version",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 151
+    },
+    {
+      "method": "GET",
+      "path": "/super-app/get-custom-script-versions",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 147
+    },
+    {
+      "method": "GET",
+      "path": "/super-app/get-custom-scripts",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 139
+    },
+    {
+      "method": "GET",
+      "path": "/super-app/get-integrations",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 60
+    },
+    {
+      "method": "GET",
+      "path": "/super-app/get-mark-payment-paid-template",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 114
+    },
+    {
+      "method": "GET",
+      "path": "/super-app/get-payment-template",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 101
+    },
+    {
+      "method": "GET",
+      "path": "/super-app/get-private-beneficiaries",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 37
+    },
+    {
+      "method": "GET",
+      "path": "/super-app/get-resident-template",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 92
+    },
+    {
+      "method": "GET",
+      "path": "/super-app/get-residents",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 72
+    },
+    {
+      "method": "GET",
+      "path": "/super-app/get-split-payment-template",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 136
+    },
+    {
+      "method": "GET",
+      "path": "/super-app/get-subscription-invoices",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 44
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/import-booking-sheet",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 122
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/import-lead-sheet",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 86
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/import-mark-payment-paid-sheet",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 109
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/import-payment-sheet",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 100
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/import-resident-sheet",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 87
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/import-split-payment-sheet",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 131
+    },
+    {
+      "method": "GET",
+      "path": "/super-app/logout",
+      "appScope": "super-admin",
+      "access": "protected",
+      "sourceFile": "src/routes/super-admin/protected/index.ts",
+      "sourceLine": 9
+    },
+    {
+      "method": "PUT",
+      "path": "/super-app/mark-subscription-invoice-paid",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 49
+    },
+    {
+      "method": "PUT",
+      "path": "/super-app/mark-subscription-invoice-uncollectable",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 52
+    },
+    {
+      "method": "PUT",
+      "path": "/super-app/mark-subscription-invoice-void",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 51
+    },
+    {
+      "method": "PUT",
+      "path": "/super-app/mark-subscription-many-invoices-paid",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 50
+    },
+    {
+      "method": "PUT",
+      "path": "/super-app/merge-users",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 65
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/phone-login",
+      "appScope": "super-admin",
+      "access": "public",
+      "sourceFile": "src/routes/super-admin/public/index.ts",
+      "sourceLine": 12
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/re-execute-bank-settlement",
+      "appScope": "super-admin",
+      "access": "public",
+      "sourceFile": "src/routes/super-admin/public/index.ts",
+      "sourceLine": 21
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/re-execute-cashfree-settlements",
+      "appScope": "super-admin",
+      "access": "public",
+      "sourceFile": "src/routes/super-admin/public/index.ts",
+      "sourceLine": 26
+    },
+    {
+      "method": "PUT",
+      "path": "/super-app/recreate-lead-or-resident-entries",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 55
+    },
+    {
+      "method": "PUT",
+      "path": "/super-app/recreate-ledger-entries",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 54
+    },
+    {
+      "method": "GET",
+      "path": "/super-app/refresh",
+      "appScope": "super-admin",
+      "access": "public",
+      "sourceFile": "src/routes/super-admin/public/index.ts",
+      "sourceLine": 13
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/regenerate-payment-documents",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 58
+    },
+    {
+      "method": "GET",
+      "path": "/super-app/reseed-company",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 31
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/reverse-resident-moveout",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 68
+    },
+    {
+      "method": "PUT",
+      "path": "/super-app/rollback-custom-script-version",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 163
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/set-device-token",
+      "appScope": "super-admin",
+      "access": "protected",
+      "sourceFile": "src/routes/super-admin/protected/index.ts",
+      "sourceLine": 8
+    },
+    {
+      "method": "PUT",
+      "path": "/super-app/update-company-details",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 35
+    },
+    {
+      "method": "PUT",
+      "path": "/super-app/update-company-subscription",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 36
+    },
+    {
+      "method": "PUT",
+      "path": "/super-app/update-subscription-invoice",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 46
+    },
+    {
+      "method": "PUT",
+      "path": "/super-app/update-subscription-modules",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 41
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/upsert-company-beneficiary-privates",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 38
+    },
+    {
+      "method": "PUT",
+      "path": "/super-app/upsert-custom-script",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 159
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/upsert-integration",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 61
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/validate-booking-sheet",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 117
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/validate-mark-payment-paid-sheet",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 104
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/validate-payment-sheet",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 95
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/validate-resident-sheet",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 81
+    },
+    {
+      "method": "POST",
+      "path": "/super-app/validate-split-payment-sheet",
+      "appScope": "super-admin",
+      "access": "private",
+      "sourceFile": "src/routes/super-admin/private/index.ts",
+      "sourceLine": 126
+    }
+  ]
+}
