@@ -3,16 +3,17 @@
     "target": "ES2022",
     "module": "ES2022",
     "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "verbatimModuleSyntax": true,
     "skipLibCheck": true,
-    "noEmit": true,
-    "outDir": "dist"
+    "types": [
+      "node"
+    ],
+    "jsx": "react-jsx",
+    "jsxImportSource": "hono/jsx",
+    "rootDir": "./src",
+    "outDir": "./dist"
   },
-  "include": [
-    "src/**/*",
-    "scripts/**/*"
-  ]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
 }
