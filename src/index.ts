@@ -6,7 +6,12 @@ import {
 } from "@mastra/hono";
 import { Hono } from "hono";
 import { createHash, randomUUID } from "node:crypto";
+import {
+  runWithArdenSession,
+  type ArdenSession,
+} from "./auth/arden-session-context";
 import { mastra } from "./mastra/index";
+import { validateArdenSession } from "./rest";
 
 const app = new Hono<{ Bindings: HonoBindings; Variables: HonoVariables }>();
 const port = 4112;
@@ -15,6 +20,26 @@ const MCP_SERVER = "http://127.0.0.1:4112/api/mcp/arden-codebase/mcp";
 const REQUIRED_SCOPE = "arden:read";
 const TOKEN_TTL_SECONDS = 60 * 60;
 const CODE_TTL_MS = 5 * 60 * 1000;
+
+type NodeError = Error & { code?: string };
+
+function isClosedResponseStreamError(error: unknown): error is NodeError {
+  return (
+    error instanceof Error &&
+    (error as NodeError).code === "ERR_INVALID_STATE" &&
+    error.message.includes("Controller is already closed")
+  );
+}
+
+process.on("uncaughtException", (error) => {
+  if (isClosedResponseStreamError(error)) {
+    console.warn("Ignored closed HTTP response stream from Hono node adapter");
+    return;
+  }
+
+  console.error(error);
+  process.exit(1);
+});
 
 type OAuthClient = {
   clientId: string;
@@ -29,12 +54,14 @@ type AuthorizationCode = {
   scope: string;
   codeChallenge: string;
   expiresAt: number;
+  ardenSession: ArdenSession;
 };
 
 type AccessToken = {
   clientId: string;
   scope: string;
   expiresAt: number;
+  ardenSession: ArdenSession;
 };
 
 const clients = new Map<string, OAuthClient>();
@@ -44,10 +71,10 @@ const accessTokens = new Map<string, AccessToken>();
 function getBodyValue(body: Record<string, unknown>, key: string) {
   const value = body[key];
   if (Array.isArray(value)) {
-    return String(value[0] ?? "");
+    return String(value[0] ?? "").trim();
   }
 
-  return typeof value === "string" ? value : "";
+  return typeof value === "string" ? value.trim() : "";
 }
 
 function escapeHtml(value: string) {
@@ -61,6 +88,41 @@ function escapeHtml(value: string) {
 
 function createPkceChallenge(codeVerifier: string) {
   return createHash("sha256").update(codeVerifier).digest("base64url");
+}
+
+function getJwtExpiresAt(token: string) {
+  const [, payload] = token.split(".");
+
+  if (!payload) {
+    return undefined;
+  }
+
+  try {
+    const decoded = JSON.parse(Buffer.from(payload, "base64url").toString()) as {
+      exp?: unknown;
+    };
+
+    return typeof decoded.exp === "number" ? decoded.exp * 1000 : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function createArdenSession(accessToken: string, permissionId: string) {
+  return {
+    accessToken,
+    ...(permissionId ? { permissionId } : {}),
+    expiresAt: getJwtExpiresAt(accessToken),
+    connectedAt: Date.now(),
+  };
+}
+
+function getMcpTokenExpiresAt(ardenSession: ArdenSession) {
+  const defaultExpiresAt = Date.now() + TOKEN_TTL_SECONDS * 1000;
+
+  return ardenSession.expiresAt
+    ? Math.min(defaultExpiresAt, ardenSession.expiresAt)
+    : defaultExpiresAt;
 }
 
 app.get("/", (c) => {
@@ -210,6 +272,16 @@ app.get("/oauth/authorize", (c) => {
           <input type="hidden" name="scope" value="${escapeHtml(scope)}" />
           <input type="hidden" name="state" value="${escapeHtml(state)}" />
           <input type="hidden" name="code_challenge" value="${escapeHtml(codeChallenge)}" />
+          <label>
+            Arden access token
+            <textarea name="arden_access_token" rows="8" cols="80" required autocomplete="off" spellcheck="false"></textarea>
+          </label>
+          <br />
+          <label>
+            Permission ID (optional)
+            <input name="arden_permission_id" type="text" autocomplete="off" />
+          </label>
+          <br />
           <button type="submit">Approve</button>
         </form>
       </body>
@@ -228,10 +300,19 @@ app.post("/oauth/authorize/approve", async (c) => {
   const scope = getBodyValue(body, "scope");
   const state = getBodyValue(body, "state");
   const codeChallenge = getBodyValue(body, "code_challenge");
+  const ardenAccessToken = getBodyValue(body, "arden_access_token");
+  const ardenPermissionId = getBodyValue(body, "arden_permission_id");
 
   console.log("#############################");
   console.log("approve");
-  console.log({ clientId, redirectUri, scope, hasState: Boolean(state) });
+  console.log({
+    clientId,
+    redirectUri,
+    scope,
+    hasState: Boolean(state),
+    hasArdenAccessToken: Boolean(ardenAccessToken),
+    hasArdenPermissionId: Boolean(ardenPermissionId),
+  });
   console.log("#############################");
 
   const client = clients.get(clientId);
@@ -252,6 +333,26 @@ app.post("/oauth/authorize/approve", async (c) => {
     return c.text("Missing code_challenge", 400);
   }
 
+  if (!ardenAccessToken) {
+    return c.text("Missing Arden access token", 400);
+  }
+
+  const ardenSession = createArdenSession(ardenAccessToken, ardenPermissionId);
+
+  if (ardenSession.expiresAt && ardenSession.expiresAt <= Date.now()) {
+    return c.text("Arden access token is expired", 400);
+  }
+
+  try {
+    await validateArdenSession(ardenSession);
+  } catch (error) {
+    console.warn("Arden token validation failed", {
+      message: error instanceof Error ? error.message : String(error),
+    });
+
+    return c.text("Arden access token validation failed", 401);
+  }
+
   const code = `code_${randomUUID()}`;
 
   authorizationCodes.set(code, {
@@ -260,6 +361,7 @@ app.post("/oauth/authorize/approve", async (c) => {
     scope,
     codeChallenge,
     expiresAt: Date.now() + CODE_TTL_MS,
+    ardenSession,
   });
 
   const callbackUrl = new URL(redirectUri);
@@ -333,11 +435,13 @@ app.post("/oauth/token", async (c) => {
   authorizationCodes.delete(code);
 
   const accessToken = `at_${randomUUID()}`;
+  const expiresAt = getMcpTokenExpiresAt(authorizationCode.ardenSession);
 
   accessTokens.set(accessToken, {
     clientId,
     scope: authorizationCode.scope,
-    expiresAt: Date.now() + TOKEN_TTL_SECONDS * 1000,
+    expiresAt,
+    ardenSession: authorizationCode.ardenSession,
   });
 
   console.log("#############################");
@@ -348,7 +452,7 @@ app.post("/oauth/token", async (c) => {
   return c.json({
     access_token: accessToken,
     token_type: "Bearer",
-    expires_in: TOKEN_TTL_SECONDS,
+    expires_in: Math.max(0, Math.floor((expiresAt - Date.now()) / 1000)),
     scope: authorizationCode.scope,
   });
 });
@@ -380,7 +484,7 @@ app.use("/api/mcp/*", async (c, next) => {
     return c.json({ error: "insufficient_scope" }, 403);
   }
 
-  await next();
+  await runWithArdenSession(accessToken.ardenSession, next);
 });
 
 const server = new MastraServer({ app, mastra, prefix: "/api" });

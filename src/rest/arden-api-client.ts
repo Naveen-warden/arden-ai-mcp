@@ -3,6 +3,10 @@ import {
   ARDEN_API_URL,
   ARDEN_PERMISSION_ID,
 } from "../environment";
+import {
+  getCurrentArdenSession,
+  type ArdenSession,
+} from "../auth/arden-session-context";
 
 export type ArdenQueryValue =
   | string
@@ -12,6 +16,11 @@ export type ArdenQueryValue =
 
 type ArdenGetOptions = {
   query?: Record<string, ArdenQueryValue>;
+};
+
+type ArdenAuth = {
+  accessToken: string;
+  permissionId?: string;
 };
 
 function getApiBaseUrl() {
@@ -64,29 +73,92 @@ function parseResponseBody(text: string, contentType: string | null): unknown {
   }
 }
 
-export async function ardenGet(path: string, options: ArdenGetOptions = {}) {
-  if (!ARDEN_ACCESS_TOKEN) {
-    throw new Error("Missing ARDEN_ACCESS_TOKEN in the Mastra environment");
+function getArdenAuth(): ArdenAuth {
+  const session = getCurrentArdenSession();
+
+  if (session) {
+    if (session.expiresAt && session.expiresAt <= Date.now()) {
+      throw new Error("The connected Arden access token is expired");
+    }
+
+    return {
+      accessToken: session.accessToken,
+      permissionId: session.permissionId,
+    };
   }
 
-  const url = makeUrl(path, options.query);
+  if (!ARDEN_ACCESS_TOKEN) {
+    throw new Error(
+      "No Arden session is connected and ARDEN_ACCESS_TOKEN is missing in the Mastra environment",
+    );
+  }
+
+  return {
+    accessToken: ARDEN_ACCESS_TOKEN,
+    permissionId: ARDEN_PERMISSION_ID,
+  };
+}
+
+function makeArdenHeaders(auth: ArdenAuth) {
   const headers: Record<string, string> = {
-    Authorization: `Bearer ${ARDEN_ACCESS_TOKEN}`,
+    Authorization: `Bearer ${auth.accessToken}`,
     Accept: "application/json",
     "ngrok-skip-browser-warning": "true",
   };
 
-  if (ARDEN_PERMISSION_ID) {
-    headers["Permission-Id"] = ARDEN_PERMISSION_ID;
+  if (auth.permissionId) {
+    headers["Permission-Id"] = auth.permissionId;
   }
+
+  return headers;
+}
+
+async function readArdenResponse(response: Response) {
+  const text = await response.text();
+  return parseResponseBody(text, response.headers.get("content-type"));
+}
+
+export async function validateArdenSession(session: ArdenSession) {
+  if (session.expiresAt && session.expiresAt <= Date.now()) {
+    throw new Error("Arden access token is expired");
+  }
+
+  const url = makeUrl("/admin-app/auto-login", undefined);
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      ...makeArdenHeaders(session),
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ type: "AUTO" }),
+    signal: AbortSignal.timeout(30_000),
+  });
+  const data = await readArdenResponse(response);
+
+  if (!response.ok) {
+    const detail = JSON.stringify(data);
+    throw new Error(
+      `Arden token validation failed with ${response.status} ${response.statusText}: ${detail.slice(0, 2_000)}`,
+    );
+  }
+
+  return {
+    status: response.status,
+    url: url.toString(),
+    data,
+  };
+}
+
+export async function ardenGet(path: string, options: ArdenGetOptions = {}) {
+  const auth = getArdenAuth();
+  const url = makeUrl(path, options.query);
 
   const response = await fetch(url, {
     method: "GET",
-    headers,
+    headers: makeArdenHeaders(auth),
     signal: AbortSignal.timeout(30_000),
   });
-  const text = await response.text();
-  const data = parseResponseBody(text, response.headers.get("content-type"));
+  const data = await readArdenResponse(response);
 
   if (!response.ok) {
     const detail = JSON.stringify(data);

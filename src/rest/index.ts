@@ -1,4 +1,4 @@
-export { ardenGet } from "./arden-api-client";
+export { ardenGet, validateArdenSession } from "./arden-api-client";
 export type { ArdenQueryValue } from "./arden-api-client";
 export {
   assertKnownArdenGetRoute,
