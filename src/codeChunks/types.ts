@@ -3,6 +3,13 @@ export const CODE_SEARCH_PROFILES = [
   "paymentPlan",
   "paymentsWorkflow",
   "customScript",
+  "booking",
+  "request",
+  "resident",
+  "document",
+  "room",
+  "auth",
+  "workflow",
   "frontend",
   "backend",
 ] as const;

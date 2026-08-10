@@ -1,7 +1,13 @@
 import { QdrantClient } from "@qdrant/js-client-rest";
 import { QDRANT_URL } from "../environment";
 
-export { ensureCodeCollection, qdrant, withQdrantRetry } from "./qdrant";
+export {
+  ensureCodeCollection,
+  ensureSemanticContextCollection,
+  qdrant,
+  withQdrantRetry,
+} from "./qdrant";
+export { qdrantRestCollectionExists, qdrantRestRequest } from "./qdrant-rest";
 
 export async function countCollections() {
   const client = new QdrantClient({
@@ -10,7 +16,7 @@ export async function countCollections() {
 
   try {
     const response = await client.getCollections();
-
+    console.log({ response }, "response");
     const count = response.collections.length;
     const collections = response.collections.map((c) => c.name);
 

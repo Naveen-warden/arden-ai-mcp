@@ -10,9 +10,13 @@ export const QDRANT_URL = process.env.QDRANT_URL;
 export const QDRANT_API_KEY = process.env.QDRANT_API_KEY;
 export const QDRANT_COLLECTION =
   process.env.QDRANT_COLLECTION ?? "arden_code_chunks";
+export const QDRANT_SEMANTIC_COLLECTION =
+  process.env.QDRANT_SEMANTIC_COLLECTION ?? "arden_semantic_context";
 
 export const ARDEN_AI_MODEL =
   process.env.ARDEN_AI_MODEL ?? "openai/gpt-4o-mini";
+export const OPENAI_EXPLAINER_MODEL =
+  process.env.OPENAI_EXPLAINER_MODEL ?? ARDEN_AI_MODEL.replace(/^openai\//, "");
 
 export const ARDEN_API_URL =
   process.env.ARDEN_API_URL ?? "http://localhost:5000/api/v1";

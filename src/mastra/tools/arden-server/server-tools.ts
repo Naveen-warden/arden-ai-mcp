@@ -8,6 +8,7 @@ import {
   resolveArdenRoutes,
   type ArdenQueryValue,
 } from "../../../rest";
+import { compactArdenData } from "../../../liveData";
 
 const scalarSchema = z.union([z.string(), z.number(), z.boolean()]);
 const queryValueSchema = z.union([scalarSchema, z.array(scalarSchema)]);
@@ -144,6 +145,17 @@ export const getApiDataTool = createTool({
       page: z.number().int().optional(),
       perPage: z.number().int().optional(),
     }),
+    dataSummary: z.object({
+      kind: z.enum(["empty", "scalar", "object", "array"]),
+      itemCount: z.number().int().optional(),
+      displayedItemCount: z.number().int().optional(),
+      collectionPath: z.string().optional(),
+      fields: z.array(z.string()),
+      records: z.array(z.unknown()),
+      metadata: z.record(z.string(), z.unknown()),
+      text: z.string(),
+      notes: z.array(z.string()),
+    }),
     data: z.unknown(),
   }),
   execute: async ({ path, query, filters, pagination }) => {
@@ -177,6 +189,7 @@ export const getApiDataTool = createTool({
           ? { page: pagination.page, perPage: pagination.perPage }
           : {}),
       },
+      dataSummary: compactArdenData(result.data),
     };
   },
 });

@@ -6,19 +6,21 @@ import { MastraCompositeStore } from "@mastra/core/storage";
 import { ardenAdminCodebaseAgent } from "./agents/arden-admin/codebase-agent";
 import { ardenServerCodebaseAgent } from "./agents/arden-server/codebase-agent";
 import { ardenCodebaseMcpServer } from "./mcp/arden-codebase-server";
-import { ardenAdminCodeSearchTool } from "./tools/arden-admin/code-search-tool";
-import { ardenServerCodeSearchTool } from "./tools/arden-server/code-search-tool";
 import {
   getApiDataTool,
   resolveApiEndpointTool,
 } from "./tools/arden-server/server-tools";
+import { ardenAgenticAnswerTool } from "./tools/arden-agentic-answer-tool";
+import { qdrantCodebaseExplainerTool } from "./tools/codebase-explainer-tool";
+import { semanticContextSearchTool } from "./tools/semantic-context-tool";
 
 export const mastra = new Mastra({
   agents: { ardenServerCodebaseAgent, ardenAdminCodebaseAgent },
   mcpServers: { ardenCodebaseMcpServer },
   tools: {
-    ardenServerCodeSearchTool,
-    ardenAdminCodeSearchTool,
+    ardenAgenticAnswerTool,
+    qdrantCodebaseExplainerTool,
+    semanticContextSearchTool,
     resolveApiEndpointTool,
     getApiDataTool,
   },
