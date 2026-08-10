@@ -16,5 +16,26 @@ export const ARDEN_AI_MODEL =
 
 export const ARDEN_API_URL =
   process.env.ARDEN_API_URL ?? "http://localhost:5000/api/v1";
+export const AUTH_BRIDGE_PUBLIC_URL =
+  process.env.AUTH_BRIDGE_PUBLIC_URL ?? "http://127.0.0.1:4112";
+export const MCP_RESOURCE_URL =
+  process.env.MCP_RESOURCE_URL ??
+  `${AUTH_BRIDGE_PUBLIC_URL}/api/mcp/arden-codebase/mcp`;
+export const ARDEN_ADMIN_URL =
+  process.env.ARDEN_ADMIN_URL ?? "http://localhost:3000";
+export const OAUTH_REQUIRED_SCOPE =
+  process.env.OAUTH_REQUIRED_SCOPE ?? "arden:read";
+export const OAUTH_CODE_TTL_SECONDS = Number(
+  process.env.OAUTH_CODE_TTL_SECONDS ?? 300,
+);
+export const OAUTH_PENDING_AUTH_TTL_SECONDS = Number(
+  process.env.OAUTH_PENDING_AUTH_TTL_SECONDS ?? 600,
+);
+export const MCP_ACCESS_TOKEN_TTL_SECONDS = Number(
+  process.env.MCP_ACCESS_TOKEN_TTL_SECONDS ?? 3600,
+);
 export const ARDEN_ACCESS_TOKEN = process.env.ARDEN_ACCESS_TOKEN;
 export const ARDEN_PERMISSION_ID = process.env.ARDEN_PERMISSION_ID;
+
+export const MSG91_WIDGET_ID = process.env.MSG91_WIDGET_ID;
+export const MSG91_TOKEN_AUTH = process.env.MSG91_TOKEN_AUTH;

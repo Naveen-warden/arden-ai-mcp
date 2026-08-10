@@ -2,9 +2,13 @@ import { AsyncLocalStorage } from "node:async_hooks";
 
 export type ArdenSession = {
   accessToken: string;
+  refreshToken?: string;
   permissionId?: string;
   expiresAt?: number;
   connectedAt: number;
+  updatedAt?: number;
+  user?: unknown;
+  permissions?: unknown[];
 };
 
 const ardenSessionStorage = new AsyncLocalStorage<ArdenSession>();

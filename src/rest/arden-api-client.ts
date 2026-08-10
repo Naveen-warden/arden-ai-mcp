@@ -7,6 +7,7 @@ import {
   getCurrentArdenSession,
   type ArdenSession,
 } from "../auth/arden-session-context";
+import { refreshArdenAccessToken } from "../auth/arden-login-exchange";
 
 export type ArdenQueryValue =
   | string
@@ -73,12 +74,12 @@ function parseResponseBody(text: string, contentType: string | null): unknown {
   }
 }
 
-function getArdenAuth(): ArdenAuth {
+async function getArdenAuth(): Promise<ArdenAuth> {
   const session = getCurrentArdenSession();
 
   if (session) {
     if (session.expiresAt && session.expiresAt <= Date.now()) {
-      throw new Error("The connected Arden access token is expired");
+      await refreshArdenAccessToken(session);
     }
 
     return {
@@ -120,7 +121,7 @@ async function readArdenResponse(response: Response) {
 
 export async function validateArdenSession(session: ArdenSession) {
   if (session.expiresAt && session.expiresAt <= Date.now()) {
-    throw new Error("Arden access token is expired");
+    await refreshArdenAccessToken(session);
   }
 
   const url = makeUrl("/admin-app/auto-login", undefined);
@@ -150,7 +151,7 @@ export async function validateArdenSession(session: ArdenSession) {
 }
 
 export async function ardenGet(path: string, options: ArdenGetOptions = {}) {
-  const auth = getArdenAuth();
+  const auth = await getArdenAuth();
   const url = makeUrl(path, options.query);
 
   const response = await fetch(url, {
