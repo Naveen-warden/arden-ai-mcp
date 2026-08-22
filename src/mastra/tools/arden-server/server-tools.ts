@@ -9,6 +9,10 @@ import {
   type ArdenQueryValue,
 } from "../../../rest";
 import { compactArdenData } from "../../../liveData";
+import {
+  ardenFilterResolutionSchema,
+  resolveArdenApiFilters,
+} from "../../../rest/arden-filter-resolver";
 
 const scalarSchema = z.union([z.string(), z.number(), z.boolean()]);
 const queryValueSchema = z.union([scalarSchema, z.array(scalarSchema)]);
@@ -191,5 +195,25 @@ export const getApiDataTool = createTool({
       },
       dataSummary: compactArdenData(result.data),
     };
+  },
+});
+
+export const resolveApiFiltersTool = createTool({
+  id: "arden-server-resolve-api-filters",
+  description:
+    "Resolve route-specific filters and pagination for a known Arden GET endpoint using indexed arden-admin and arden-server code evidence.",
+  inputSchema: z.object({
+    query: z.string().min(2),
+    path: z.string().min(2),
+    appScope: appScopeSchema.default("admin-app"),
+    preferredPerPage: z.number().int().min(1).max(1_000).optional(),
+  }),
+  outputSchema: ardenFilterResolutionSchema,
+  execute: async (input, context) => {
+    const logger = context.mastra?.logger;
+    logger?.info(
+      `Resolve API filters tool called with input: ${JSON.stringify(input)}`,
+    );
+    return resolveArdenApiFilters(input);
   },
 });
