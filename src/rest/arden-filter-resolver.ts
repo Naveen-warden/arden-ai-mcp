@@ -82,7 +82,7 @@ function buildSystemPrompt() {
     "You are an Arden API request resolver.",
     "Convert a user request into structured query params for one already-resolved GET endpoint.",
     "Use ONLY the provided indexed code evidence. Do not invent endpoint paths, filter fields, enum values, sort keys, or query params.",
-    "Prefer arden-admin evidence for user-facing labels, UI filters, hook parameters,types(Schema.type), constants, and status labels.",
+    "Prefer arden-admin evidence for user-facing labels, UI filters, hook parameters, types(Schema.type), constants, and status labels.",
     "Prefer arden-server evidence for API-accepted filters, validators, filter controls, and sort controls.",
     "Distinguish user-facing labels from internal values. Example: a UI label may differ from the API enum value.",
     "Use structured filters for q parameter pieces. Do not put q inside query when the same filter can be represented in filters.",
@@ -90,6 +90,42 @@ function buildSystemPrompt() {
     "If preferred page size is supplied and no evidence rejects it, use it as perPage.",
     "If the filter mapping is not supported by evidence, set confidence to blocked and shouldExecute to false.",
     "Return only valid JSON matching the schema. Do not include markdown or commentary.",
+    "",
+    "## Understanding arden-server filterControl",
+    "",
+    "The evidence contains `filterControl` objects that define ALL valid filters for an endpoint.",
+    "",
+    "### filterControl Structure:",
+    "{",
+    "  searchText: [{ OR: [{ column, symbol, validator }] }],  // Text search fields",
+    "  fieldName: [{ column, symbol, validator }]               // Exact filter fields",
+    "}",
+    "",
+    "### Operators (symbol):",
+    '- ":="  → Exact match (equality)',
+    '- "~="  → Contains / fuzzy match (ILIKE)',
+    '- ">="  → Greater than or equal',
+    '- "<="  → Less than or equal',
+    '- "!="  → Not equal',
+    "",
+    "### Validators (from defaultParamValidators):",
+    "- string           → Any string value",
+    "- number           → Integer (transforms string to int)",
+    "- float            → Float number",
+    "- boolean          → \"true\" or \"false\" strings",
+    "- datetime         → ISO datetime string",
+    "- enum([values])   → MUST use one of the provided enum values",
+    "",
+    "### Critical: Enum Values",
+    "When validator is `defaultParamValidators['enum'](someEnum)`, the enum VALUES are defined elsewhere (often in models/constants.ts). You MUST find these enum values in the evidence to map user terms like \"draft\" → \"Draft\".",
+    "",
+    "### Mapping User Terms to Filters:",
+    "1. Identify the filter field from filterControl (e.g., \"status\")",
+    "2. Check the validator type",
+    "3. If enum: find the enum values in evidence (look for BOOKING_STATUSES, bookingStatus, displayStatus, etc.)",
+    "4. Map user language to exact enum value (case-sensitive!)",
+    "5. Use operator from filterControl (usually \":=\" for enums)",
+    "6. Output filter: { field: \"status\", operator: \":=\", value: \"Draft\" }",
   ].join("\n");
 }
 
@@ -105,10 +141,27 @@ function buildUserPrompt(input: ArdenApiFiltersInput, evidence: string) {
     "- query is for route-specific query params other than q filters and pagination.",
     "- filters are encoded into Arden q by the executor.",
     "- For normal list/latest/newest requests, use page 1 and prefer id desc only if evidence supports id sorting or common list sorting.",
-    "- high confidence requires endpoint/filter evidence and value/label evidence.",
+    "- high confidence requires endpoint/filter evidence AND value/label evidence.",
     "- medium confidence means route and filter are supported but value evidence is partial.",
     "- low confidence means plausible but weak evidence; shouldExecute should usually be false.",
     "- blocked means do not execute.",
+    "",
+    "## Filter Resolution Instructions:",
+    "",
+    "For EACH filter field found in filterControl evidence:",
+    "1. **Extract**: field key, column, operator (symbol), validator type",
+    "2. **If enum validator**: Search evidence for the enum definition (e.g., BOOKING_STATUSES, bookingStatus, displayStatus, subscriptionStatus, etc.)",
+    "3. **Map user intent**: \"draft bookings\" → status field with value \"Draft\" (exact case from enum)",
+    "4. **Output filter**: { field: \"status\", operator: \":=\", value: \"Draft\" }",
+    "",
+    "## Required Output Rules:",
+    "- NEVER return empty filters array with \"high\" confidence",
+    "- If evidence has filterControl but NO enum values found for a needed filter → confidence: \"medium\" or \"low\"",
+    "- If user asks for specific filter (draft/pending/confirmed/cancelled/closed) but no enum evidence → confidence: \"blocked\"",
+    "- Each filter MUST have: field, operator, value (matching validator type)",
+    "- Use \":=\" operator for enum fields (exact match)",
+    "- Use \"~=\" operator for text search fields (contains match)",
+    "- For status-like filters, check BOTH 'status' and 'displayStatus' fields in filterControl",
     "",
     "Return fields:",
     "- path",
@@ -156,6 +209,38 @@ async function resolveWithLlm(input: ArdenApiFiltersInput, evidence: string) {
     query: queryEntriesToRecord(parsed.query),
   });
 
+  const userQueryLower = input.query.toLowerCase();
+  const filterIntentKeywords = [
+    "draft", "pending", "confirm", "cancel", "closed", "active", "inactive",
+    "reserved", "booked", "check.?in", "check.?out", "approved", "rejected",
+    "completed", "failed", "processing", "archived", "published", "unpublished",
+    "enabled", "disabled", "filter", "status", "where", "with", "only", "show"
+  ];
+  const userAsksForFiltering = filterIntentKeywords.some(kw => new RegExp(kw, "i").test(userQueryLower));
+  const hasFilterControlEvidence = evidence.includes("filterControl");
+  const hasEnumEvidence = /enum\s*\(|STATUSES|Status|enum\s+[A-Z]/i.test(evidence);
+
+  if (normalized.filters.length === 0) {
+    if (userAsksForFiltering && hasFilterControlEvidence && !hasEnumEvidence) {
+      return makeBlockedResolution(
+        input,
+        "Filter resolution failed: user requested filtering but enum/constant values not found in evidence for the filter fields.",
+      );
+    }
+    if (userAsksForFiltering && hasFilterControlEvidence && normalized.confidence === "high") {
+      return makeBlockedResolution(
+        input,
+        "Filter resolution failed: high confidence but no filters returned for filter query. Enum/constant values may be missing from evidence.",
+      );
+    }
+    if (normalized.confidence === "high") {
+      return makeBlockedResolution(
+        input,
+        "Filter resolution failed: high confidence but no filters returned. Evidence may be insufficient.",
+      );
+    }
+  }
+
   return {
     ...normalized,
     path: input.path,
@@ -172,7 +257,7 @@ async function resolveWithLlm(input: ArdenApiFiltersInput, evidence: string) {
 export async function resolveArdenApiFilters(
   input: ArdenApiFiltersInput,
 ): Promise<ArdenFilterResolution> {
-  await assertKnownArdenGetRoute(input.path);
+  assertKnownArdenGetRoute(input.path);
   const evidenceRows = await collectFilterEvidence(input);
 
   if (evidenceRows.length === 0) {
@@ -187,9 +272,9 @@ export async function resolveArdenApiFilters(
   try {
     const resolution = await resolveWithLlm(input, evidence);
 
-    // console.log("*********************");
-    // console.log(resolution);
-    // console.log("*********************");
+    console.log("*********************");
+    console.log(resolution);
+    console.log("*********************");
     return {
       ...resolution,
       warnings: [
@@ -233,7 +318,7 @@ function buildEvidenceQueries(input: ArdenApiFiltersInput) {
     input.path,
   );
 
-  return [
+  const queries = [
     `${routeTail} filterControl`,
     `${resource} filterControl`,
     `${singularResource} filterControl`,
@@ -246,6 +331,45 @@ function buildEvidenceQueries(input: ArdenApiFiltersInput) {
     `${input.query} FilterParams`,
     `generateSearchQuery getQueryKeys q parameter`,
   ];
+
+  const queryLower = input.query.toLowerCase();
+  const filterValueTerms: string[] = [];
+
+  const commonFilterValues = [
+    "draft", "pending", "confirmed", "cancelled", "closed", "active", "inactive",
+    "reserved", "booked", "checked.in", "checked.out", "check.in", "check.out",
+    "approved", "rejected", "completed", "failed", "processing", "archived",
+    "published", "unpublished", "enabled", "disabled", "true", "false",
+  ];
+
+  for (const term of commonFilterValues) {
+    if (queryLower.includes(term)) {
+      filterValueTerms.push(term.charAt(0).toUpperCase() + term.slice(1));
+    }
+  }
+
+  if (filterValueTerms.length > 0) {
+    const terms = filterValueTerms.join(" ");
+    queries.push(
+      `${resource} status enum ${terms}`,
+      `${singularResource} status enum ${terms}`,
+      `${resource} filter field status ${terms}`,
+      `${singularResource} filter field status ${terms}`,
+      `${resource} filter field displayStatus ${terms}`,
+      `${singularResource} filter field displayStatus ${terms}`,
+      `${resource} enum ${terms}`,
+      `${singularResource} enum ${terms}`,
+    );
+  }
+
+  queries.push(
+    `${resource} constants enum`,
+    `${singularResource} constants enum`,
+    `models/constants ${resource} status`,
+    `models/constants ${singularResource} status`,
+  );
+
+  return queries;
 }
 
 async function collectFilterEvidence(input: ArdenApiFiltersInput) {

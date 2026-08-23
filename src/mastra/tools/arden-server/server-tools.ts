@@ -15,7 +15,7 @@ import {
 } from "../../../rest/arden-filter-resolver";
 
 const scalarSchema = z.union([z.string(), z.number(), z.boolean()]);
-const queryValueSchema = z.union([scalarSchema, z.array(scalarSchema)]);
+export const queryValueSchema = z.union([scalarSchema, z.array(scalarSchema)]);
 const filterOperatorSchema = z.enum([">=", "<=", ":=", "!=", "~="]);
 const appScopeSchema = z.enum([
   "admin-app",
@@ -60,7 +60,7 @@ export const resolveApiEndpointTool = createTool({
   }),
   execute: async ({ query, appScope, limit }) => {
     const manifest = getArdenRouteManifest();
-    const candidates = await resolveArdenRoutes({
+    const candidates = resolveArdenRoutes({
       query,
       method: "GET",
       appScope,
@@ -105,7 +105,7 @@ export const getApiDataTool = createTool({
       .describe(
         "API path relative to ARDEN_API_URL, including its app prefix, for example /admin-app/get-custom-scripts. Do not provide a host or query string.",
       ),
-    query: z
+    searchParams: z
       .record(z.string(), queryValueSchema)
       .default({})
       .describe(
@@ -162,10 +162,10 @@ export const getApiDataTool = createTool({
     }),
     data: z.unknown(),
   }),
-  execute: async ({ path, query, filters, pagination }) => {
+  execute: async ({ path, searchParams, filters, pagination }) => {
     await assertKnownArdenGetRoute(path);
 
-    const apiQuery: Record<string, ArdenQueryValue> = { ...query };
+    const apiQuery: Record<string, ArdenQueryValue> = { ...searchParams };
     const structuredQ = makeFilterQuery(filters);
 
     if (structuredQ) {
@@ -210,10 +210,7 @@ export const resolveApiFiltersTool = createTool({
   }),
   outputSchema: ardenFilterResolutionSchema,
   execute: async (input, context) => {
-    const logger = context.mastra?.logger;
-    logger?.info(
-      `Resolve API filters tool called with input: ${JSON.stringify(input)}`,
-    );
+    console.log("string tool");
     return resolveArdenApiFilters(input);
   },
 });

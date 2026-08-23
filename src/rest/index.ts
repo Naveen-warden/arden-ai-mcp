@@ -7,3 +7,5 @@ export {
   resolveArdenRoutes,
 } from "./arden-route-catalog";
 export type { ArdenAppScope, ArdenRoute } from "./arden-route-catalog";
+export { resolveArdenApiFilters, type ArdenFilterResolution } from "./arden-filter-resolver";
+export { compactArdenData } from "../liveData/compact";
