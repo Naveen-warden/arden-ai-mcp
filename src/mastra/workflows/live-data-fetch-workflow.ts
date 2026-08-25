@@ -153,6 +153,12 @@ const resolveFiltersStep = createStep({
       );
     }
 
+    if (!resolution.shouldExecute) {
+      throw new Error(
+        `Filter resolution marked request unsafe: ${resolution.warnings.join("; ")}`,
+      );
+    }
+
     return {
       path: inputData.path,
       appScope: inputData.appScope,
@@ -222,4 +228,3 @@ const liveDataFetchWorkflow = createWorkflow({
   .commit();
 
 export { liveDataFetchWorkflow };
-

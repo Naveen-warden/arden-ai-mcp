@@ -2,7 +2,7 @@ import { z } from "zod";
 import { ardenLlmAgent } from "../llm/arden-llm-agent";
 import { assertKnownArdenGetRoute } from "./arden-route-catalog";
 import { searchCode, type CodeSearchResult } from "../codeChunks";
-import { log } from "node:console";
+import { searchGitHubFilterEvidence } from "../githubCode/filter-evidence";
 type ArdenApiFiltersInput = {
   query: string;
   path: string;
@@ -20,8 +20,7 @@ const queryValueSchema = z.union([scalarSchema, z.array(scalarSchema)]);
 const filterOperatorSchema = z.enum([">=", "<=", ":=", "!=", "~="]);
 const confidenceSchema = z.enum(["low", "medium", "high", "blocked"]);
 
-//INFO: this is resposible for mainting the filter schema for the custom 'q' parameter ,
-//eg:{ field: "displayStatus", operator: ":=", value: { status: "Draft" } }
+//INFO: this is resposible for mainting the filter schema for the custom 'q' parameter.
 export const ardenResolvedFilterSchema = z.object({
   field: z.string().regex(/^[A-Za-z][A-Za-z0-9_.$]*$/),
   operator: filterOperatorSchema,
@@ -81,14 +80,14 @@ function buildSystemPrompt() {
   return [
     "You are an Arden API request resolver.",
     "Convert a user request into structured query params for one already-resolved GET endpoint.",
-    "Use ONLY the provided indexed code evidence. Do not invent endpoint paths, filter fields, enum values, sort keys, or query params.",
-    "Prefer arden-admin evidence for user-facing labels, UI filters, hook parameters, types(Schema.type), constants, and status labels.",
+    "Use ONLY the provided code evidence. Do not invent endpoint paths, filter fields, enum values, sort keys, or query params.",
+    "Treat Extracted Schema Facts as exact enum/value evidence parsed from TypeScript union types.",
     "Prefer arden-server evidence for API-accepted filters, validators, filter controls, and sort controls.",
-    "Distinguish user-facing labels from internal values. Example: a UI label may differ from the API enum value.",
+    "Prefer arden-admin schema facts for user-facing status values.",
     "Use structured filters for q parameter pieces. Do not put q inside query when the same filter can be represented in filters.",
     "Use page as one-based in the JSON output. The executor converts it to zero-based.",
     "If preferred page size is supplied and no evidence rejects it, use it as perPage.",
-    "If the filter mapping is not supported by evidence, set confidence to blocked and shouldExecute to false.",
+    "If the filter mapping is not supported by evidence, explain the uncertainty in warnings.",
     "Return only valid JSON matching the schema. Do not include markdown or commentary.",
     "",
     "## Understanding arden-server filterControl",
@@ -116,16 +115,8 @@ function buildSystemPrompt() {
     "- datetime         → ISO datetime string",
     "- enum([values])   → MUST use one of the provided enum values",
     "",
-    "### Critical: Enum Values",
-    "When validator is `defaultParamValidators['enum'](someEnum)`, the enum VALUES are defined elsewhere (often in models/constants.ts). You MUST find these enum values in the evidence to map user terms like \"draft\" → \"Draft\".",
-    "",
-    "### Mapping User Terms to Filters:",
-    "1. Identify the filter field from filterControl (e.g., \"status\")",
-    "2. Check the validator type",
-    "3. If enum: find the enum values in evidence (look for BOOKING_STATUSES, bookingStatus, displayStatus, etc.)",
-    "4. Map user language to exact enum value (case-sensitive!)",
-    "5. Use operator from filterControl (usually \":=\" for enums)",
-    "6. Output filter: { field: \"status\", operator: \":=\", value: \"Draft\" }",
+    "For enum filters, use only values proven by filterControl, constants, or Extracted Schema Facts.",
+    "Never pair a value with a field whose enum evidence excludes that value.",
   ].join("\n");
 }
 
@@ -140,28 +131,16 @@ function buildUserPrompt(input: ArdenApiFiltersInput, evidence: string) {
     "- Keep path exactly equal to the resolved endpoint.",
     "- query is for route-specific query params other than q filters and pagination.",
     "- filters are encoded into Arden q by the executor.",
-    "- For normal list/latest/newest requests, use page 1 and prefer id desc only if evidence supports id sorting or common list sorting.",
-    "- high confidence requires endpoint/filter evidence AND value/label evidence.",
-    "- medium confidence means route and filter are supported but value evidence is partial.",
-    "- low confidence means plausible but weak evidence; shouldExecute should usually be false.",
-    "- blocked means do not execute.",
+    "- confidence should reflect the strength of the evidence.",
+    "- blocked means do not execute only when the request cannot be safely mapped at all.",
     "",
-    "## Filter Resolution Instructions:",
-    "",
-    "For EACH filter field found in filterControl evidence:",
-    "1. **Extract**: field key, column, operator (symbol), validator type",
-    "2. **If enum validator**: Search evidence for the enum definition (e.g., BOOKING_STATUSES, bookingStatus, displayStatus, subscriptionStatus, etc.)",
-    "3. **Map user intent**: \"draft bookings\" → status field with value \"Draft\" (exact case from enum)",
-    "4. **Output filter**: { field: \"status\", operator: \":=\", value: \"Draft\" }",
-    "",
-    "## Required Output Rules:",
-    "- NEVER return empty filters array with \"high\" confidence",
-    "- If evidence has filterControl but NO enum values found for a needed filter → confidence: \"medium\" or \"low\"",
-    "- If user asks for specific filter (draft/pending/confirmed/cancelled/closed) but no enum evidence → confidence: \"blocked\"",
+    "Required output rules:",
+    "- If user asks for a specific filter value but no matching enum/value evidence exists → confidence: \"blocked\"",
     "- Each filter MUST have: field, operator, value (matching validator type)",
+    "- A value is only valid for a field if evidence shows that field's validator accepts that exact value.",
     "- Use \":=\" operator for enum fields (exact match)",
     "- Use \"~=\" operator for text search fields (contains match)",
-    "- For status-like filters, check BOTH 'status' and 'displayStatus' fields in filterControl",
+    "- For lifecycle/status-like wording, inspect all relevant filterControl fields and do not assume the backend field is named 'status'.",
     "",
     "Return fields:",
     "- path",
@@ -173,7 +152,7 @@ function buildUserPrompt(input: ArdenApiFiltersInput, evidence: string) {
     "- evidenceSummary",
     "- warnings",
     "",
-    `Indexed code evidence:\n${evidence}`,
+    `Code evidence:\n${evidence}`,
   ].join("\n");
 }
 
@@ -181,6 +160,15 @@ function queryEntriesToRecord(
   entries: z.infer<typeof ardenLlmQueryEntrySchema>[],
 ): ArdenFilterResolution["query"] {
   return Object.fromEntries(entries.map(({ key, value }) => [key, value]));
+}
+
+function normalizeLlmResolution(result: unknown) {
+  const parsed = ardenLlmFilterResolutionSchema.parse(result);
+
+  return ardenFilterResolutionSchema.parse({
+    ...parsed,
+    query: queryEntriesToRecord(parsed.query),
+  });
 }
 
 async function resolveWithLlm(input: ArdenApiFiltersInput, evidence: string) {
@@ -203,57 +191,121 @@ async function resolveWithLlm(input: ArdenApiFiltersInput, evidence: string) {
     throw new Error("LLM did not return structured filter resolution");
   }
 
-  const parsed = ardenLlmFilterResolutionSchema.parse(result.object);
-  const normalized = ardenFilterResolutionSchema.parse({
-    ...parsed,
-    query: queryEntriesToRecord(parsed.query),
-  });
-
-  const userQueryLower = input.query.toLowerCase();
-  const filterIntentKeywords = [
-    "draft", "pending", "confirm", "cancel", "closed", "active", "inactive",
-    "reserved", "booked", "check.?in", "check.?out", "approved", "rejected",
-    "completed", "failed", "processing", "archived", "published", "unpublished",
-    "enabled", "disabled", "filter", "status", "where", "with", "only", "show"
-  ];
-  const userAsksForFiltering = filterIntentKeywords.some(kw => new RegExp(kw, "i").test(userQueryLower));
-  const hasFilterControlEvidence = evidence.includes("filterControl");
-  const hasEnumEvidence = /enum\s*\(|STATUSES|Status|enum\s+[A-Z]/i.test(evidence);
-
-  if (normalized.filters.length === 0) {
-    if (userAsksForFiltering && hasFilterControlEvidence && !hasEnumEvidence) {
-      return makeBlockedResolution(
-        input,
-        "Filter resolution failed: user requested filtering but enum/constant values not found in evidence for the filter fields.",
-      );
-    }
-    if (userAsksForFiltering && hasFilterControlEvidence && normalized.confidence === "high") {
-      return makeBlockedResolution(
-        input,
-        "Filter resolution failed: high confidence but no filters returned for filter query. Enum/constant values may be missing from evidence.",
-      );
-    }
-    if (normalized.confidence === "high") {
-      return makeBlockedResolution(
-        input,
-        "Filter resolution failed: high confidence but no filters returned. Evidence may be insufficient.",
-      );
-    }
-  }
-
   return {
-    ...normalized,
+    ...normalizeLlmResolution(result.object),
     path: input.path,
-    shouldExecute:
-      normalized.confidence === "blocked" ? false : normalized.shouldExecute,
   };
 }
 
-// export async function resolveArdenApiFilters(input: ArdenApiFiltersInput) {
-//   await assertKnownArdenGetRoute(input.path);
-//   console.error(input);
-//   return { status: "success" };
-// }
+function schemaAllowedStatusFields(evidence: string, value: string) {
+  const allowed: Array<{ field: string; value: string }> = [];
+  const schemaLines = evidence.matchAll(
+    /\b[A-Za-z][A-Za-z0-9_]*\.([A-Za-z][A-Za-z0-9_]*) uses [^:]+ values: ([^\n]+)/g,
+  );
+
+  for (const match of schemaLines) {
+    const field = match[1];
+    const exactValue = (match[2] ?? "")
+      .split(",")
+      .map((item) => item.trim())
+      .find((item) => item.toLowerCase() === value.toLowerCase());
+
+    if (field && exactValue) allowed.push({ field, value: exactValue });
+  }
+
+  return allowed.filter(
+    (match, index) => allowed.findIndex((item) => item.field === match.field && item.value === match.value) === index,
+  );
+}
+
+function endpointSupportsFilterField(evidence: string, field: string) {
+  return evidence.includes("filterControl") && new RegExp(`\\b${field}\\s*:`).test(evidence);
+}
+
+function preferSchemaStatusField(matches: Array<{ field: string; value: string }>) {
+  return matches.find((match) => match.field === "status") ?? matches[0];
+}
+
+function applySchemaStatusCorrections(
+  resolution: ArdenFilterResolution,
+  evidence: string,
+): ArdenFilterResolution {
+  if (!evidence.includes("Extracted Schema Facts")) return resolution;
+
+  return {
+    ...resolution,
+    filters: resolution.filters.map((filter) => {
+      if (!/status/i.test(filter.field) || typeof filter.value !== "string") {
+        return filter;
+      }
+
+      const field = preferSchemaStatusField(schemaAllowedStatusFields(evidence, filter.value))?.field;
+      return field && field !== filter.field ? { ...filter, field } : filter;
+    }),
+  };
+}
+
+function hasSchemaValidStatusFilter(resolution: ArdenFilterResolution, evidence: string) {
+  return resolution.filters.some((filter) => {
+    if (!/status/i.test(filter.field) || typeof filter.value !== "string") {
+      return false;
+    }
+
+    return schemaAllowedStatusFields(evidence, filter.value).some(
+      (match) => match.field === filter.field && endpointSupportsFilterField(evidence, filter.field),
+    );
+  });
+}
+
+function resolveSchemaStatusFilter(input: ArdenApiFiltersInput, evidence: string) {
+  for (const term of input.query.split(/[^a-z0-9-]+/i)) {
+    const matches = schemaAllowedStatusFields(evidence, term).filter((match) =>
+      endpointSupportsFilterField(evidence, match.field),
+    );
+    const selected = preferSchemaStatusField(matches);
+
+    if (selected) {
+      return { field: selected.field, operator: ":=" as const, value: selected.value };
+    }
+  }
+
+  return undefined;
+}
+
+function enforceSafeFilterResolution(
+  input: ArdenApiFiltersInput,
+  resolution: ArdenFilterResolution,
+  evidence: string,
+): ArdenFilterResolution {
+  const corrected = applySchemaStatusCorrections(resolution, evidence);
+  if (hasSchemaValidStatusFilter(corrected, evidence)) {
+    return {
+      ...corrected,
+      confidence: "high",
+      shouldExecute: true,
+      warnings: [],
+    };
+  }
+
+  const schemaFilter = corrected.filters.length === 0 ? resolveSchemaStatusFilter(input, evidence) : undefined;
+
+  if (schemaFilter) {
+    return {
+      ...corrected,
+      filters: [schemaFilter],
+      confidence: "high",
+      shouldExecute: true,
+      evidenceSummary: [
+        `Resolved ${schemaFilter.field} := ${schemaFilter.value} from schema facts and endpoint filterControl.`,
+      ],
+    };
+  }
+
+  return corrected.confidence === "blocked"
+    ? { ...corrected, shouldExecute: false }
+    : corrected;
+}
+
 export async function resolveArdenApiFilters(
   input: ArdenApiFiltersInput,
 ): Promise<ArdenFilterResolution> {
@@ -270,7 +322,7 @@ export async function resolveArdenApiFilters(
   const evidence = formatEvidence(evidenceRows);
 
   try {
-    const resolution = await resolveWithLlm(input, evidence);
+    const resolution = enforceSafeFilterResolution(input, await resolveWithLlm(input, evidence), evidence);
 
     console.log("*********************");
     console.log(resolution);
@@ -317,62 +369,28 @@ function buildEvidenceQueries(input: ArdenApiFiltersInput) {
   const { routeTail, resource, singularResource } = deriveRouteTerms(
     input.path,
   );
+  const resourceTypeName = resource.charAt(0).toUpperCase() + resource.slice(1);
+  const singularTypeName = singularResource.charAt(0).toUpperCase() + singularResource.slice(1);
 
-  const queries = [
+  return [
     `${routeTail} filterControl`,
     `${resource} filterControl`,
     `${singularResource} filterControl`,
     `${routeTail} sortControl`,
-    `${resource} sortControl`,
     `${routeTail} FilterParams`,
     `${resource} FilterParams`,
-    `${singularResource} FilterParams`,
     `${input.query} filterControl`,
     `${input.query} FilterParams`,
     `generateSearchQuery getQueryKeys q parameter`,
+    `Schema.${resourceTypeName}`,
+    `Schema.${singularTypeName}`,
+    `${resource} status enum`,
+    `${singularResource} status enum`,
   ];
-
-  const queryLower = input.query.toLowerCase();
-  const filterValueTerms: string[] = [];
-
-  const commonFilterValues = [
-    "draft", "pending", "confirmed", "cancelled", "closed", "active", "inactive",
-    "reserved", "booked", "checked.in", "checked.out", "check.in", "check.out",
-    "approved", "rejected", "completed", "failed", "processing", "archived",
-    "published", "unpublished", "enabled", "disabled", "true", "false",
-  ];
-
-  for (const term of commonFilterValues) {
-    if (queryLower.includes(term)) {
-      filterValueTerms.push(term.charAt(0).toUpperCase() + term.slice(1));
-    }
-  }
-
-  if (filterValueTerms.length > 0) {
-    const terms = filterValueTerms.join(" ");
-    queries.push(
-      `${resource} status enum ${terms}`,
-      `${singularResource} status enum ${terms}`,
-      `${resource} filter field status ${terms}`,
-      `${singularResource} filter field status ${terms}`,
-      `${resource} filter field displayStatus ${terms}`,
-      `${singularResource} filter field displayStatus ${terms}`,
-      `${resource} enum ${terms}`,
-      `${singularResource} enum ${terms}`,
-    );
-  }
-
-  queries.push(
-    `${resource} constants enum`,
-    `${singularResource} constants enum`,
-    `models/constants ${resource} status`,
-    `models/constants ${singularResource} status`,
-  );
-
-  return queries;
 }
 
 async function collectFilterEvidence(input: ArdenApiFiltersInput) {
+  const route = assertKnownArdenGetRoute(input.path);
   const evidenceQueries = buildEvidenceQueries(input);
 
   const searches = evidenceQueries.flatMap((evidenceQuery) => [
@@ -386,13 +404,16 @@ async function collectFilterEvidence(input: ArdenApiFiltersInput) {
     }),
   ]);
 
-  const results = (await Promise.all(searches)).flat();
+  const qdrantResults = (await Promise.all(searches)).flat();
+  const githubResults = await searchGitHubFilterEvidence(input, qdrantResults, {
+    filePath: route.sourceFile,
+    line: route.sourceLine,
+  });
+
+  const results = [...githubResults, ...qdrantResults];
 
   return rerankEvidence(results);
 }
-//this function helps to re-rank the evidence eg: if a codeChunk contains 'filterControl' function (backend) it gets boosted to 0.45 or the filePath includes 'server/*' (frontend)
-//helps to enrich the correct filers of the specific query
-
 function evidenceBoost(row: CodeSearchResult) {
   const content = row.content.toLowerCase();
   const filePath = row.filePath.toLowerCase();
@@ -400,6 +421,8 @@ function evidenceBoost(row: CodeSearchResult) {
   let boost = 0;
 
   if (content.includes("filtercontrol")) boost += 0.45;
+  if (content.includes("extracted schema facts")) boost += 0.5;
+  if (row.kind === "github-file") boost += 0.2;
   if (content.includes("sortcontrol")) boost += 0.3;
   if (content.includes("filterparams")) boost += 0.3;
   if (content.includes("generatesearchquery")) boost += 0.25;
@@ -434,9 +457,11 @@ function rerankEvidence(results: CodeSearchResult[]): RankedEvidence[] {
 
 function formatEvidence(rows: RankedEvidence[]) {
   return rows
-    .map((row, index) =>
-      [
+    .map((row, index) => {
+      const source = row.kind === "github-file" ? "GitHub live source" : "Qdrant indexed chunk";
+      return [
         `Evidence ${index + 1}`,
+        `Source: ${source}`,
         `Repo: ${row.repo}`,
         `File: ${row.filePath}`,
         `Name: ${row.name}`,
@@ -447,7 +472,7 @@ function formatEvidence(rows: RankedEvidence[]) {
         "```",
         row.content.slice(0, 3_500),
         "```",
-      ].join("\n"),
-    )
+      ].join("\n");
+    })
     .join("\n\n---\n\n");
 }

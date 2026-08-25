@@ -16,9 +16,11 @@ import { ardenAgenticAnswerTool } from "./tools/arden-agentic-answer-tool";
 import { qdrantCodebaseExplainerTool } from "./tools/codebase-explainer-tool";
 import { semanticContextSearchTool } from "./tools/semantic-context-tool";
 import { liveDataFetchWorkflow } from "./workflows/live-data-fetch-workflow";
+import { gethubAgent } from "./agents/github-agent";
+import { githubCodeChunkTool } from "./tools/github-code-chunk-tool";
 
 export const mastra = new Mastra({
-  agents: { ardenServerCodebaseAgent, ardenAdminCodebaseAgent },
+  agents: { ardenServerCodebaseAgent, ardenAdminCodebaseAgent, gethubAgent },
 
   mcpServers: { ardenCodebaseMcpServer },
   tools: {
@@ -29,6 +31,7 @@ export const mastra = new Mastra({
     resolveApiFiltersTool,
     getApiDataTool,
     fetchLiveDataWorkflowTool,
+    githubCodeChunkTool,
   },
   workflows: { liveDataFetchWorkflow },
   storage: new MastraCompositeStore({
