@@ -5,7 +5,7 @@ import { workflowInputSchema, workflowOutputSchema } from "../../workflows/live-
 export const fetchLiveDataWorkflowTool = createTool({
   id: "fetch-live-data",
   description:
-    "Fetch live data using the full workflow: resolves endpoint → resolves filters → fetches data. Use for natural language queries like 'show me draft bookings' or 'fetch latest payments'.",
+    "Fetch live Arden server data from natural language. Resolves endpoint, resolves filters using current GitHub/Qdrant evidence, then calls the GET API. Use for queries like 'fetch reserved bookings' or 'fetch latest payments'.",
   inputSchema: workflowInputSchema,
   outputSchema: workflowOutputSchema,
   execute: async (input, context) => {

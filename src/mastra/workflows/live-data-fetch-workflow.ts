@@ -219,6 +219,8 @@ const fetchLiveDataStep = createStep({
 
 const liveDataFetchWorkflow = createWorkflow({
   id: "live-data-fetch-workflow",
+  description:
+    "Fetch live Arden server data from natural language by resolving endpoint, resolving filters with GitHub/Qdrant evidence, and calling the read-only GET API.",
   inputSchema: workflowInputSchema,
   outputSchema: workflowOutputSchema,
 })

@@ -6,7 +6,7 @@ import {
   resolveApiEndpointTool,
   resolveApiFiltersTool,
 } from "../../tools/arden-server/server-tools";
-import { fetchLiveDataWorkflowTool } from "../../tools/arden-server/workflow-tools";
+import { liveDataFetchWorkflow } from "../../workflows/live-data-fetch-workflow";
 import { ardenAgenticAnswerTool } from "../../tools/arden-agentic-answer-tool";
 import { qdrantCodebaseExplainerTool } from "../../tools/codebase-explainer-tool";
 import { semanticContextSearchTool } from "../../tools/semantic-context-tool";
@@ -23,7 +23,9 @@ export const ardenServerCodebaseAgent = new Agent({
     resolveApiEndpointTool,
     resolveApiFiltersTool,
     getApiDataTool,
-    fetchLiveDataWorkflowTool,
+  },
+  workflows: {
+    liveDataFetchWorkflow,
   },
   instructions: `You are an Arden assistant that explains product workflows, implementation-backed behavior, and live Arden data according to the user's role.
 
@@ -33,8 +35,8 @@ Tool selection:
 2. Use the Qdrant codebase explainer directly only when you already know the user needs implementation flow and does not need live records.
 3. Use semantic context search directly only for lightweight product framing or when a safe summary is enough.
 4. For live backend data, use the registered workflow as primary:
-   - live-data-fetch-workflow: handles endpoint resolution → filter resolution → fetch in one call.
-   - Use for natural language queries like "show me draft bookings" or "fetch latest payments".
+   - workflow-liveDataFetchWorkflow: handles endpoint resolution → GitHub/Qdrant-backed filter resolution → fetch in one call.
+   - Use it for natural language queries like "show me draft bookings", "fetch reserved bookings", or "fetch latest payments".
 5. Use individual live-data tools only when explicit control is needed:
    - resolveApiEndpointTool: when user provides vague query and you want to show candidate endpoints first.
    - resolveApiFiltersTool: when user wants to review/refine filters before fetching.
@@ -50,9 +52,9 @@ For the codebase explainer, choose responseMode deliberately:
 Use profile filters when obvious: booking, paymentPlan, paymentsWorkflow, request, resident, document, room, auth, workflow, frontend, backend.
 
 When the user asks for live backend data:
-- Primary: Call live-data-fetch-workflow with the user's query (and optional path, appScope, pagination).
+- Primary: Call workflow-liveDataFetchWorkflow with the user's query (and optional path, appScope, pagination).
 - Advanced: Use individual tools only if user needs step-by-step control.
-- The workflow uses the same resolvers internally and throws on blocked filter resolution.
+- The workflow uses the same endpoint resolver and GitHub/Qdrant-backed filter resolver internally.
 
 Never invent or rewrite an endpoint. User words such as "latest", "recent", or "first" usually describe sorting and pagination on a collection route; do not assume those words are part of the endpoint name. For example, fetching the latest booking uses /admin-app/get-bookings with descending sorting and perPage 1. /admin-app/get-users-with-latest-booking is a specialized user lookup and is not the normal booking collection route.
 

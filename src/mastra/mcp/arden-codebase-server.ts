@@ -3,8 +3,10 @@ import { MCPServer } from "@mastra/mcp";
 import { getArdenRouteManifest } from "../../rest";
 import {
   getApiDataTool,
+  resolveApiFiltersTool,
   resolveApiEndpointTool,
 } from "../tools/arden-server/server-tools";
+import { fetchLiveDataWorkflowTool } from "../tools/arden-server/workflow-tools";
 import { ardenAgenticAnswerTool } from "../tools/arden-agentic-answer-tool";
 import { qdrantCodebaseExplainerTool } from "../tools/codebase-explainer-tool";
 import { semanticContextSearchTool } from "../tools/semantic-context-tool";
@@ -29,7 +31,8 @@ export const ardenCodebaseMcpServer = new MCPServer({
 
 Use arden-semantic-context-search for safe product, workflow, and role-aware explanation context. It intentionally does not expose source code, file paths, snippets, routes, or secrets.
 
-For live arden-server data, always call arden-server-resolve-api-endpoint first, then call arden-server-get-api-data with an exact resolved path.
+For live arden-server data from natural language, prefer arden-server-fetch-live-data. It resolves the endpoint, resolves filters with current GitHub/Qdrant evidence, then fetches data.
+Use arden-server-resolve-api-endpoint, arden-server-resolve-api-filters, and arden-server-get-api-data separately only when step-by-step control is needed.
 
 Answer style must match the user's role. For business users, use plain language and next steps. For operators/admins, include operational status and safe actions. For developers, technical details may be provided from controlled Qdrant code-chunk evidence when authorized.
 
@@ -38,7 +41,9 @@ Never invent endpoint paths. Words such as latest or recent usually represent so
     "arden-answer": ardenAgenticAnswerTool,
     "arden-codebase-explain-from-code": qdrantCodebaseExplainerTool,
     "arden-semantic-context-search": semanticContextSearchTool,
+    "arden-server-fetch-live-data": fetchLiveDataWorkflowTool,
     "arden-server-resolve-api-endpoint": resolveApiEndpointTool,
+    "arden-server-resolve-api-filters": resolveApiFiltersTool,
     "arden-server-get-api-data": getApiDataTool,
   },
   resources: {
@@ -79,9 +84,10 @@ Never invent endpoint paths. Words such as latest or recent usually represent so
 
 ## Live backend data
 
-1. Call \`arden-server-resolve-api-endpoint\` to obtain registered GET routes.
-2. Call \`arden-server-get-api-data\` with an exact resolved path.
-3. Explain the live data using the user's role and audience.
+1. Prefer \`arden-server-fetch-live-data\` for natural-language live-data requests, for example "fetch reserved bookings".
+2. The workflow resolves endpoint → resolves filters using GitHub/Qdrant evidence → fetches the exact GET route.
+3. Use \`arden-server-resolve-api-endpoint\`, \`arden-server-resolve-api-filters\`, and \`arden-server-get-api-data\` separately only when you need step-by-step control.
+4. Explain the live data using the user's role and audience.
 
 Do not invent routes. Treat words such as latest and recent as sorting or pagination unless an exact specialized route is confirmed.
 
