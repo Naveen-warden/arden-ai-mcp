@@ -36,6 +36,8 @@ export const OAUTH_PENDING_AUTH_TTL_SECONDS = Number(
 export const MCP_ACCESS_TOKEN_TTL_SECONDS = Number(
   process.env.MCP_ACCESS_TOKEN_TTL_SECONDS ?? 3600,
 );
+export const MCP_JWT_PRIVATE_KEY = process.env.MCP_JWT_PRIVATE_KEY;
+export const MCP_JWT_KEY_ID = process.env.MCP_JWT_KEY_ID;
 export const ARDEN_ACCESS_TOKEN = process.env.ARDEN_ACCESS_TOKEN;
 export const ARDEN_PERMISSION_ID = process.env.ARDEN_PERMISSION_ID;
 
