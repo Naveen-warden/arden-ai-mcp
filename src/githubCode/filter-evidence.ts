@@ -123,7 +123,7 @@ function pathVariants(repo: KnownGithubRepo, filePath: string) {
 
 async function getGithubTools() {
   const toolsets = await githubMcp.listToolsets();
-  return toolsets.github as Record<string, GitHubTool | undefined> | undefined;
+  return toolsets.github as unknown as Record<string, GitHubTool | undefined> | undefined;
 }
 
 export async function fetchGitHubCodeChunk(repo: KnownGithubRepo, filePath: string) {
