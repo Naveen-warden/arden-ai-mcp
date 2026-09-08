@@ -14,6 +14,7 @@ import {
   exchangeArdenPhoneLogin,
   type ArdenLoginMethod,
 } from "./auth/arden-login-exchange";
+import { getMcpJwtService } from "./auth/mcp-jwt";
 import { oauthStore } from "./auth/oauth-store";
 import { mastra } from "./mastra/index";
 import { validateArdenSession } from "./rest";
@@ -80,6 +81,13 @@ function getDefaultPermissionId(permissions: unknown[]) {
   return getPermissionIds(permissions)[0] ?? "";
 }
 
+function getSessionUserId(user: unknown) {
+  if (!user || typeof user !== "object") return undefined;
+
+  const id = (user as Record<string, unknown>).id;
+  return typeof id === "number" || typeof id === "string" ? String(id) : undefined;
+}
+
 function makeOAuthCallbackUrl(redirectUri: string, code: string, state: string) {
   const callbackUrl = new URL(redirectUri);
   callbackUrl.searchParams.set("code", code);
@@ -130,11 +138,16 @@ app.get("/.well-known/oauth-authorization-server", (c) => {
     authorization_endpoint: `${authBridgeConfig.issuer}/oauth/authorize`,
     token_endpoint: `${authBridgeConfig.issuer}/oauth/token`,
     registration_endpoint: `${authBridgeConfig.issuer}/oauth/register`,
+    jwks_uri: `${authBridgeConfig.issuer}/oauth/jwks`,
     response_types_supported: ["code"],
     grant_types_supported: ["authorization_code"],
     code_challenge_methods_supported: ["S256"],
     scopes_supported: [authBridgeConfig.requiredScope],
   });
+});
+
+app.get("/oauth/jwks", async (c) => {
+  return c.json(await getMcpJwtService().getPublicJwks());
 });
 
 app.post("/oauth/register", async (c) => {
@@ -369,9 +382,21 @@ app.post("/oauth/token", async (c) => {
     return c.json({ error: "invalid_grant" }, 400);
   }
 
-  oauthStore.authorizationCodes.delete(code);
+  const userId = getSessionUserId(authorizationCode.ardenSession.user);
+  const permissionId = authorizationCode.ardenSession.permissionId;
 
-  const accessToken = `at_${randomUUID()}`;
+  if (!userId || !permissionId) {
+    return c.json({ error: "invalid_grant" }, 400);
+  }
+
+  const accessToken = await getMcpJwtService().signAccessToken({
+    userId,
+    permissionId,
+    clientId,
+    scope: authorizationCode.scope,
+  });
+
+  oauthStore.authorizationCodes.delete(code);
   const expiresAt = getMcpTokenExpiresAt(
     Boolean(authorizationCode.ardenSession.refreshToken),
     authorizationCode.ardenSession.expiresAt,

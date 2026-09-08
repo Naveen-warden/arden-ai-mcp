@@ -7,6 +7,7 @@ export const ARDEN_APP_PREFIXES = {
   "resident-app": "/resident-app",
   "super-admin": "/super-app",
   "external-app": "/external-app",
+  "mcp-app": "/mcp-app",
   "public-app": "/public-app",
 } as const;
 

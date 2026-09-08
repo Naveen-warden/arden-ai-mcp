@@ -23,6 +23,7 @@ const appScopeSchema = z.enum([
   "resident-app",
   "super-admin",
   "external-app",
+  "mcp-app",
   "public-app",
 ]);
 
