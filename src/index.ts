@@ -18,9 +18,9 @@ import { getMcpJwtService } from "./auth/mcp-jwt";
 import { oauthStore } from "./auth/oauth-store";
 import { mastra } from "./mastra/index";
 import { validateArdenSession } from "./rest";
+import { port as PORT } from "./environment";
 
 const app = new Hono<{ Bindings: HonoBindings; Variables: HonoVariables }>();
-const port = 4112;
 
 type NodeError = Error & { code?: string };
 
@@ -58,7 +58,10 @@ function makeAdminAuthorizeUrl(requestId: string) {
   return url;
 }
 
-function getMcpTokenExpiresAt(hasArdenRefreshToken: boolean, ardenExpiresAt?: number) {
+function getMcpTokenExpiresAt(
+  hasArdenRefreshToken: boolean,
+  ardenExpiresAt?: number,
+) {
   const defaultExpiresAt = Date.now() + authBridgeConfig.mcpAccessTokenTtlMs;
   return hasArdenRefreshToken || !ardenExpiresAt
     ? defaultExpiresAt
@@ -85,10 +88,16 @@ function getSessionUserId(user: unknown) {
   if (!user || typeof user !== "object") return undefined;
 
   const id = (user as Record<string, unknown>).id;
-  return typeof id === "number" || typeof id === "string" ? String(id) : undefined;
+  return typeof id === "number" || typeof id === "string"
+    ? String(id)
+    : undefined;
 }
 
-function makeOAuthCallbackUrl(redirectUri: string, code: string, state: string) {
+function makeOAuthCallbackUrl(
+  redirectUri: string,
+  code: string,
+  state: string,
+) {
   const callbackUrl = new URL(redirectUri);
   callbackUrl.searchParams.set("code", code);
   if (state) callbackUrl.searchParams.set("state", state);
@@ -170,7 +179,10 @@ app.post("/oauth/register", async (c) => {
     );
   }
 
-  const scope = typeof body.scope === "string" ? body.scope : authBridgeConfig.requiredScope;
+  const scope =
+    typeof body.scope === "string"
+      ? body.scope
+      : authBridgeConfig.requiredScope;
 
   if (!scope.split(/\s+/).includes(authBridgeConfig.requiredScope)) {
     return c.json(
@@ -222,7 +234,8 @@ app.get("/oauth/authorize", (c) => {
 
   const client = oauthStore.clients.get(clientId);
   if (!client) return c.text("Unknown client_id", 400);
-  if (!client.redirectUris.includes(redirectUri)) return c.text("Invalid redirect_uri", 400);
+  if (!client.redirectUris.includes(redirectUri))
+    return c.text("Invalid redirect_uri", 400);
   if (responseType !== "code") return c.text("Unsupported response_type", 400);
   if (!scope.split(/\s+/).includes(authBridgeConfig.requiredScope)) {
     return c.text("Unsupported scope", 400);
@@ -318,7 +331,9 @@ app.post("/oauth/arden-authorize/complete", async (c) => {
     return c.json({ error: "arden_login_required" }, 400);
   }
 
-  const permissionIds = getPermissionIds(pending.ardenSession.permissions ?? []);
+  const permissionIds = getPermissionIds(
+    pending.ardenSession.permissions ?? [],
+  );
   const permissionId = requestedPermissionId || permissionIds[0] || "";
 
   if (permissionIds.length > 0 && !permissionIds.includes(permissionId)) {
@@ -349,7 +364,11 @@ app.post("/oauth/arden-authorize/complete", async (c) => {
   oauthStore.pendingAuthorizationRequests.delete(requestId);
 
   return c.json({
-    redirectUrl: makeOAuthCallbackUrl(pending.redirectUri, code, pending.state).toString(),
+    redirectUrl: makeOAuthCallbackUrl(
+      pending.redirectUri,
+      code,
+      pending.state,
+    ).toString(),
   });
 });
 
@@ -435,7 +454,9 @@ app.use("/api/mcp/*", async (c, next) => {
     oauthStore.accessTokens.delete(token);
     return c.json({ error: "invalid_token" }, 401);
   }
-  if (!accessToken.scope.split(/\s+/).includes(authBridgeConfig.requiredScope)) {
+  if (
+    !accessToken.scope.split(/\s+/).includes(authBridgeConfig.requiredScope)
+  ) {
     return c.json({ error: "insufficient_scope" }, 403);
   }
 
@@ -449,7 +470,7 @@ await server.init();
 serve(
   {
     fetch: app.fetch,
-    port,
+    port: Number(PORT),
   },
   (info) => {
     console.log(`Server is running on http://localhost:${info.port}`);

@@ -1,6 +1,8 @@
 import dotenv from "dotenv";
 
 dotenv.config({ quiet: true });
+export const port = process.env.PORT ?? 4112;
+
 export const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 export const OPENAI_MODEL = process.env.OPENAI_MODEL ?? "openai/gpt-4o-mini";
 export const ARDEN_AI_MODEL = OPENAI_MODEL;
